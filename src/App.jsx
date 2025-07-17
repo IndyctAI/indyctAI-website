@@ -51,17 +51,36 @@ function App() {
   const scrollToServices = () => {
     const servicesSection = document.getElementById('services');
     if (servicesSection) {
-      // Add a pulse effect to the button
+      // Add multiple epic effects to the button
       const button = document.querySelector('.services-button');
       if (button) {
+        // Create a ripple effect
+        button.style.transform = 'scale(0.95)';
+        button.style.boxShadow = '0 0 30px rgba(6, 182, 212, 0.8), 0 0 60px rgba(59, 130, 246, 0.4)';
+        
+        setTimeout(() => {
+          button.style.transform = 'scale(1)';
+          button.style.boxShadow = '';
+        }, 200);
+        
+        // Add a temporary glow effect
         button.classList.add('animate-pulse');
-        setTimeout(() => button.classList.remove('animate-pulse'), 300);
+        setTimeout(() => button.classList.remove('animate-pulse'), 600);
       }
       
+      // Smooth scroll with easing
       servicesSection.scrollIntoView({ 
         behavior: 'smooth',
         block: 'start'
       });
+      
+      // Add a subtle shake effect to the services section when reached
+      setTimeout(() => {
+        servicesSection.style.animation = 'subtle-bounce 0.6s ease-out';
+        setTimeout(() => {
+          servicesSection.style.animation = '';
+        }, 600);
+      }, 800);
     }
   };
 
@@ -211,15 +230,93 @@ function App() {
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
+                className="relative group"
               >
                 <Button 
                   size="lg" 
                   onClick={scrollToServices}
-                  className="services-button bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white px-8 py-3 transform transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/25 relative overflow-hidden group"
+                  className="services-button relative bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white px-8 py-3 overflow-hidden border-2 border-transparent hover:border-cyan-400/50 transition-all duration-500"
                 >
-                  <span className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-blue-400 opacity-0 group-hover:opacity-20 transition-opacity duration-300"></span>
-                  <span className="relative z-10">Ontdek Onze Diensten</span>
-                  <ArrowRight className="ml-2 w-5 h-5 relative z-10 group-hover:translate-x-1 transition-transform duration-300" />
+                  {/* Animated background layers */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-cyan-400/20 to-blue-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  
+                  {/* Scanning line effect */}
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
+                    initial={{ x: '-100%' }}
+                    animate={{ x: '100%' }}
+                    transition={{
+                      duration: 2,
+                      repeat: Infinity,
+                      repeatDelay: 3,
+                      ease: "easeInOut"
+                    }}
+                  />
+                  
+                  {/* Particle effect corners */}
+                  <div className="absolute top-0 left-0 w-2 h-2 bg-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-pulse"></div>
+                  <div className="absolute top-0 right-0 w-2 h-2 bg-blue-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-pulse delay-100"></div>
+                  <div className="absolute bottom-0 left-0 w-2 h-2 bg-blue-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-pulse delay-200"></div>
+                  <div className="absolute bottom-0 right-0 w-2 h-2 bg-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-pulse delay-300"></div>
+                  
+                  {/* Glowing border effect */}
+                  <div className="absolute inset-0 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    <div className="absolute inset-0 rounded-md bg-gradient-to-r from-cyan-400/50 to-blue-400/50 blur-sm"></div>
+                  </div>
+                  
+                  {/* Text with special effects */}
+                  <span className="relative z-10 flex items-center font-semibold tracking-wide">
+                    <motion.span
+                      className="mr-2"
+                      animate={{
+                        textShadow: [
+                          "0 0 0px rgba(6, 182, 212, 0)",
+                          "0 0 10px rgba(6, 182, 212, 0.5)",
+                          "0 0 0px rgba(6, 182, 212, 0)"
+                        ]
+                      }}
+                      transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                        repeatDelay: 1
+                      }}
+                    >
+                      Ontdek Onze Diensten
+                    </motion.span>
+                    
+                    {/* Animated arrow with trail effect */}
+                    <motion.div className="relative">
+                      <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+                      <motion.div
+                        className="absolute inset-0"
+                        animate={{
+                          x: [0, 8, 0],
+                          opacity: [0, 1, 0]
+                        }}
+                        transition={{
+                          duration: 1.5,
+                          repeat: Infinity,
+                          repeatDelay: 0.5
+                        }}
+                      >
+                        <ArrowRight className="w-5 h-5 text-cyan-300" />
+                      </motion.div>
+                    </motion.div>
+                  </span>
+                  
+                  {/* Holographic effect */}
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-r from-transparent via-cyan-400/10 to-transparent opacity-0 group-hover:opacity-100"
+                    animate={{
+                      x: ['-100%', '100%'],
+                    }}
+                    transition={{
+                      duration: 1.5,
+                      repeat: Infinity,
+                      repeatDelay: 2,
+                      ease: "easeInOut"
+                    }}
+                  />
                 </Button>
               </motion.div>
               <Dialog open={isContactFormOpen} onOpenChange={setIsContactFormOpen}>
