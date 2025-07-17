@@ -28,8 +28,20 @@ import futuristicAi2 from './assets/images/futuristic_ai_2.png';
 import neuralNetwork1 from './assets/images/neural_network_1.jpg';
 import vorixaAILogo from './assets/images/vorixa_ai_logo.png';
 
+import { 
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "./components/ui/dialog";
+import { Input } from "./components/ui/input";
+import { Textarea } from "./components/ui/textarea";
+
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isContactFormOpen, setIsContactFormOpen] = useState(false);
   const { scrollYProgress } = useScroll();
   const y = useTransform(scrollYProgress, [0, 1], ['0%', '50%']);
 
@@ -180,9 +192,47 @@ function App() {
                 Ontdek Onze Diensten
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
-              <Button size="lg" variant="secondary" className="bg-slate-700 text-white hover:bg-slate-600 px-8 py-3">
-                Neem Contact Op
-              </Button>
+              <Dialog open={isContactFormOpen} onOpenChange={setIsContactFormOpen}>
+                <DialogTrigger asChild>
+                  <Button size="lg" variant="secondary" className="bg-slate-700 text-white hover:bg-slate-600 px-8 py-3">
+                    Neem Contact Op
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="sm:max-w-[425px] bg-slate-800 border-slate-700 text-white">
+                  <DialogHeader>
+                    <DialogTitle>Neem Contact Op</DialogTitle>
+                    <DialogDescription>
+                      Vul het onderstaande formulier in en we nemen zo snel mogelijk contact met u op.
+                    </DialogDescription>
+                  </DialogHeader>
+                  <form name="contact" method="POST" data-netlify="true">
+                    <input type="hidden" name="form-name" value="contact" />
+                    <div className="grid gap-4 py-4">
+                      <div className="grid grid-cols-4 items-center gap-4">
+                        <label htmlFor="name" className="text-right">
+                          Naam
+                        </label>
+                        <Input id="name" name="name" className="col-span-3 bg-slate-700 border-slate-600" />
+                      </div>
+                      <div className="grid grid-cols-4 items-center gap-4">
+                        <label htmlFor="email" className="text-right">
+                          Email
+                        </label>
+                        <Input id="email" name="email" type="email" className="col-span-3 bg-slate-700 border-slate-600" />
+                      </div>
+                      <div className="grid grid-cols-4 items-center gap-4">
+                        <label htmlFor="message" className="text-right">
+                          Bericht
+                        </label>
+                        <Textarea id="message" name="message" className="col-span-3 bg-slate-700 border-slate-600" />
+                      </div>
+                    </div>
+                    <DialogFooter>
+                      <Button type="submit" className="bg-blue-600 hover:bg-blue-700">Verstuur</Button>
+                    </DialogFooter>
+                  </form>
+                </DialogContent>
+              </Dialog>
             </div>
           </motion.div>
         </div>
