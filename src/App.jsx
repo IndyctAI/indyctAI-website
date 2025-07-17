@@ -46,6 +46,24 @@ function App() {
   const { scrollYProgress } = useScroll();
   const y = useTransform(scrollYProgress, [0, 1], ['0%', '50%']);
 
+  // Smooth scroll function with epic animation
+  const scrollToServices = () => {
+    const servicesSection = document.getElementById('services');
+    if (servicesSection) {
+      // Add a pulse effect to the button
+      const button = document.querySelector('.services-button');
+      if (button) {
+        button.classList.add('animate-pulse');
+        setTimeout(() => button.classList.remove('animate-pulse'), 300);
+      }
+      
+      servicesSection.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  };
+
   // Navigation items
   const navItems = [
     { name: 'Home', href: '#home' },
@@ -189,10 +207,20 @@ function App() {
               met de kracht van artificiële intelligentie voor ongekende groei.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white px-8 py-3">
-                Ontdek Onze Diensten
-                <ArrowRight className="ml-2 w-5 h-5" />
-              </Button>
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Button 
+                  size="lg" 
+                  onClick={scrollToServices}
+                  className="services-button bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white px-8 py-3 transform transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/25 relative overflow-hidden group"
+                >
+                  <span className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-blue-400 opacity-0 group-hover:opacity-20 transition-opacity duration-300"></span>
+                  <span className="relative z-10">Ontdek Onze Diensten</span>
+                  <ArrowRight className="ml-2 w-5 h-5 relative z-10 group-hover:translate-x-1 transition-transform duration-300" />
+                </Button>
+              </motion.div>
               <Dialog open={isContactFormOpen} onOpenChange={setIsContactFormOpen}>
                 <DialogTrigger asChild>
                   <Button size="lg" variant="secondary" className="bg-slate-700 text-white hover:bg-slate-600 px-8 py-3">
@@ -271,52 +299,97 @@ function App() {
       </section>
 
       {/* Services Section */}
-      <section id="services" className="py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section id="services" className="py-20 relative overflow-hidden">
+        {/* Background animation */}
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-900/10 to-cyan-900/10"></div>
+        <motion.div
+          className="absolute inset-0 opacity-30"
+          animate={{
+            background: [
+              "radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 50%)",
+              "radial-gradient(circle at 80% 50%, rgba(6, 182, 212, 0.1) 0%, transparent 50%)",
+              "radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 50%)"
+            ]
+          }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        />
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+            <motion.h2 
+              className="text-4xl md:text-5xl font-bold text-white mb-6"
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
               Onze <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">Diensten</span>
-            </h2>
-            <p className="text-xl text-slate-300 max-w-3xl mx-auto">
+            </motion.h2>
+            <motion.p 
+              className="text-xl text-slate-300 max-w-3xl mx-auto"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+            >
               Van strategisch advies tot implementatie van complexe AI-systemen, 
               wij zijn uw complete partner in artificiële intelligentie.
-            </p>
+            </motion.p>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {services.map((service, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                whileHover={{ scale: 1.02 }}
-                className="group"
+                initial={{ opacity: 0, y: 50, rotateX: -15 }}
+                whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
+                transition={{ 
+                  duration: 0.8, 
+                  delay: index * 0.2,
+                  ease: "easeOut"
+                }}
+                whileHover={{ 
+                  scale: 1.03, 
+                  rotateY: 5,
+                  transition: { duration: 0.3 }
+                }}
+                className="group perspective-1000"
               >
-                <Card className="bg-slate-800/50 border-slate-700 hover:border-blue-500/50 transition-all duration-300 h-full">
-                  <CardHeader>
+                <Card className="bg-slate-800/50 border-slate-700 hover:border-blue-500/50 transition-all duration-500 h-full relative overflow-hidden hover:shadow-2xl hover:shadow-blue-500/10">
+                  {/* Animated background gradient */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-blue-600/5 to-cyan-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  
+                  <CardHeader className="relative z-10">
                     <div className="flex items-center gap-4 mb-4">
-                      <div className="p-3 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-lg text-white group-hover:scale-110 transition-transform duration-300">
+                      <motion.div 
+                        className="p-3 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-lg text-white group-hover:scale-110 transition-all duration-300 group-hover:shadow-lg group-hover:shadow-blue-500/25"
+                        whileHover={{ rotate: 360 }}
+                        transition={{ duration: 0.6 }}
+                      >
                         {service.icon}
-                      </div>
-                      <CardTitle className="text-white text-xl">{service.title}</CardTitle>
+                      </motion.div>
+                      <CardTitle className="text-white text-xl group-hover:text-blue-300 transition-colors duration-300">{service.title}</CardTitle>
                     </div>
-                    <CardDescription className="text-slate-300 text-base">
+                    <CardDescription className="text-slate-300 text-base group-hover:text-slate-200 transition-colors duration-300">
                       {service.description}
                     </CardDescription>
                   </CardHeader>
-                  <CardContent>
+                  <CardContent className="relative z-10">
                     <div className="space-y-2">
                       {service.features.map((feature, featureIndex) => (
-                        <div key={featureIndex} className="flex items-center gap-2">
-                          <CheckCircle className="w-4 h-4 text-green-400" />
-                          <span className="text-slate-300 text-sm">{feature}</span>
-                        </div>
+                        <motion.div 
+                          key={featureIndex} 
+                          className="flex items-center gap-2"
+                          initial={{ opacity: 0, x: -20 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          transition={{ delay: (index * 0.2) + (featureIndex * 0.1) + 0.5 }}
+                        >
+                          <CheckCircle className="w-4 h-4 text-green-400 group-hover:text-green-300 transition-colors duration-300" />
+                          <span className="text-slate-300 text-sm group-hover:text-slate-200 transition-colors duration-300">{feature}</span>
+                        </motion.div>
                       ))}
                     </div>
                   </CardContent>
