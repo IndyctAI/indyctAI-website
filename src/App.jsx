@@ -482,6 +482,91 @@ function App() {
                         <Textarea id="message" name="message" required className="col-span-3 bg-slate-700 border-slate-600" />
                       </div>
                     </div>
+                    
+                    {/* Suggestions Section */}
+                    <div className="mt-6 p-4 bg-slate-700/50 rounded-lg border border-slate-600">
+                      <h4 className="text-white font-semibold mb-3 flex items-center">
+                        <span className="mr-2">💡</span>
+                        Niet zeker wat u nodig heeft? Hier zijn enkele ideeën:
+                      </h4>
+                      <div className="grid grid-cols-1 gap-2 text-sm">
+                        <motion.button
+                          type="button"
+                          whileHover={{ scale: 1.02, backgroundColor: "rgba(59, 130, 246, 0.1)" }}
+                          className="text-left p-2 rounded text-slate-300 hover:text-white transition-colors"
+                          onClick={() => {
+                            const messageField = document.getElementById('message');
+                            messageField.value = "Ik wil graag weten hoe AI mijn bedrijfsprocessen kan automatiseren en efficiënter kan maken.";
+                          }}
+                        >
+                          🤖 "Hoe kan AI mijn bedrijfsprocessen automatiseren?"
+                        </motion.button>
+                        
+                        <motion.button
+                          type="button"
+                          whileHover={{ scale: 1.02, backgroundColor: "rgba(59, 130, 246, 0.1)" }}
+                          className="text-left p-2 rounded text-slate-300 hover:text-white transition-colors"
+                          onClick={() => {
+                            const messageField = document.getElementById('message');
+                            messageField.value = "Ik heb veel data maar weet niet hoe ik hier waardevolle inzichten uit kan halen. Kunnen jullie helpen?";
+                          }}
+                        >
+                          📊 "Ik heb veel data maar geen inzichten"
+                        </motion.button>
+                        
+                        <motion.button
+                          type="button"
+                          whileHover={{ scale: 1.02, backgroundColor: "rgba(59, 130, 246, 0.1)" }}
+                          className="text-left p-2 rounded text-slate-300 hover:text-white transition-colors"
+                          onClick={() => {
+                            const messageField = document.getElementById('message');
+                            messageField.value = "Ik wil een chatbot of AI-assistent voor mijn website/bedrijf. Wat zijn de mogelijkheden?";
+                          }}
+                        >
+                          💬 "Ik wil een AI-chatbot voor mijn website"
+                        </motion.button>
+                        
+                        <motion.button
+                          type="button"
+                          whileHover={{ scale: 1.02, backgroundColor: "rgba(59, 130, 246, 0.1)" }}
+                          className="text-left p-2 rounded text-slate-300 hover:text-white transition-colors"
+                          onClick={() => {
+                            const messageField = document.getElementById('message');
+                            messageField.value = "Mijn concurrenten gebruiken al AI. Hoe kan ik bijblijven en een voorsprong krijgen?";
+                          }}
+                        >
+                          🚀 "Hoe blijf ik voor op mijn concurrentie met AI?"
+                        </motion.button>
+                        
+                        <motion.button
+                          type="button"
+                          whileHover={{ scale: 1.02, backgroundColor: "rgba(59, 130, 246, 0.1)" }}
+                          className="text-left p-2 rounded text-slate-300 hover:text-white transition-colors"
+                          onClick={() => {
+                            const messageField = document.getElementById('message');
+                            messageField.value = "Ik wil graag een gratis AI-strategie gesprek om te bespreken wat de mogelijkheden zijn voor mijn bedrijf.";
+                          }}
+                        >
+                          🎯 "Ik wil een gratis strategiegesprek"
+                        </motion.button>
+                        
+                        <motion.button
+                          type="button"
+                          whileHover={{ scale: 1.02, backgroundColor: "rgba(59, 130, 246, 0.1)" }}
+                          className="text-left p-2 rounded text-slate-300 hover:text-white transition-colors"
+                          onClick={() => {
+                            const messageField = document.getElementById('message');
+                            messageField.value = "Ik heb een specifiek AI-project in gedachten en wil weten of jullie dit kunnen realiseren.";
+                          }}
+                        >
+                          ⚡ "Ik heb een specifiek AI-project in gedachten"
+                        </motion.button>
+                      </div>
+                      <p className="text-xs text-slate-400 mt-3">
+                        💡 Tip: Klik op een suggestie om deze automatisch in uw bericht in te vullen
+                      </p>
+                    </div>
+                    
                     <DialogFooter>
                       <Button type="submit" className="bg-blue-600 hover:bg-blue-700">Verstuur</Button>
                     </DialogFooter>
