@@ -27,6 +27,7 @@ import futuristicAi1 from './assets/images/futuristic_ai_1.png';
 import futuristicAi2 from './assets/images/futuristic_ai_2.png';
 import neuralNetwork1 from './assets/images/neural_network_1.jpg';
 import vorixaAILogo from './assets/images/vorixa_ai_logo.png';
+import newAiBackground from './assets/images/new_ai_background.jpg';
 
 import { 
   Dialog,
@@ -184,7 +185,7 @@ function App() {
         >
           <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 to-purple-600/20" />
           <img
-            src={abstractAi1}
+            src={newAiBackground}
             alt="AI Background"
             className="w-full h-full object-cover opacity-30"
           />
