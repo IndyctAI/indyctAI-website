@@ -321,9 +321,97 @@ function App() {
               </motion.div>
               <Dialog open={isContactFormOpen} onOpenChange={setIsContactFormOpen}>
                 <DialogTrigger asChild>
-                  <Button size="lg" variant="secondary" className="bg-slate-700 text-white hover:bg-slate-600 px-8 py-3">
-                    Neem Contact Op
-                  </Button>
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="relative group"
+                  >
+                    <Button 
+                      size="lg" 
+                      className="contact-button relative bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-8 py-3 overflow-hidden border-2 border-transparent hover:border-pink-400/50 transition-all duration-500"
+                    >
+                      {/* Animated background layers */}
+                      <div className="absolute inset-0 bg-gradient-to-r from-pink-400/20 to-purple-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                      
+                      {/* Scanning line effect */}
+                      <motion.div
+                        className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
+                        initial={{ x: '-100%' }}
+                        animate={{ x: '100%' }}
+                        transition={{
+                          duration: 2.5,
+                          repeat: Infinity,
+                          repeatDelay: 4,
+                          ease: "easeInOut"
+                        }}
+                      />
+                      
+                      {/* Particle effect corners */}
+                      <div className="absolute top-0 left-0 w-2 h-2 bg-pink-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-pulse"></div>
+                      <div className="absolute top-0 right-0 w-2 h-2 bg-purple-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-pulse delay-100"></div>
+                      <div className="absolute bottom-0 left-0 w-2 h-2 bg-purple-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-pulse delay-200"></div>
+                      <div className="absolute bottom-0 right-0 w-2 h-2 bg-pink-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-pulse delay-300"></div>
+                      
+                      {/* Glowing border effect */}
+                      <div className="absolute inset-0 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                        <div className="absolute inset-0 rounded-md bg-gradient-to-r from-pink-400/50 to-purple-400/50 blur-sm"></div>
+                      </div>
+                      
+                      {/* Text with special effects */}
+                      <span className="relative z-10 flex items-center font-semibold tracking-wide">
+                        <motion.span
+                          className="mr-2"
+                          animate={{
+                            textShadow: [
+                              "0 0 0px rgba(236, 72, 153, 0)",
+                              "0 0 10px rgba(236, 72, 153, 0.5)",
+                              "0 0 0px rgba(236, 72, 153, 0)"
+                            ]
+                          }}
+                          transition={{
+                            duration: 2.5,
+                            repeat: Infinity,
+                            repeatDelay: 1.5
+                          }}
+                        >
+                          Neem Contact Op
+                        </motion.span>
+                        
+                        {/* Animated mail icon with pulse effect */}
+                        <motion.div className="relative">
+                          <Mail className="w-5 h-5 group-hover:scale-110 transition-transform duration-300" />
+                          <motion.div
+                            className="absolute inset-0"
+                            animate={{
+                              scale: [1, 1.3, 1],
+                              opacity: [0, 0.8, 0]
+                            }}
+                            transition={{
+                              duration: 2,
+                              repeat: Infinity,
+                              repeatDelay: 1
+                            }}
+                          >
+                            <Mail className="w-5 h-5 text-pink-300" />
+                          </motion.div>
+                        </motion.div>
+                      </span>
+                      
+                      {/* Holographic effect */}
+                      <motion.div
+                        className="absolute inset-0 bg-gradient-to-r from-transparent via-pink-400/10 to-transparent opacity-0 group-hover:opacity-100"
+                        animate={{
+                          x: ['-100%', '100%'],
+                        }}
+                        transition={{
+                          duration: 2,
+                          repeat: Infinity,
+                          repeatDelay: 3,
+                          ease: "easeInOut"
+                        }}
+                      />
+                    </Button>
+                  </motion.div>
                 </DialogTrigger>
                 <DialogContent className="sm:max-w-[425px] bg-slate-800 border-slate-700 text-white">
                   <DialogHeader>
