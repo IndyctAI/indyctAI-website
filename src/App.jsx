@@ -44,77 +44,45 @@ import { Textarea } from "./components/ui/textarea";
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isContactFormOpen, setIsContactFormOpen] = useState(false);
-  const [isAiDemoOpen, setIsAiDemoOpen] = useState(false);
-  const [demoStep, setDemoStep] = useState(0);
   const { scrollYProgress } = useScroll();
   const y = useTransform(scrollYProgress, [0, 1], ['0%', '50%']);
 
-  // Launch AI automation demo
-  const launchAiDemo = () => {
-    const button = document.querySelector('.services-button');
-    if (button) {
-      // Create a ripple effect
-      button.style.transform = 'scale(0.95)';
-      button.style.boxShadow = '0 0 30px rgba(6, 182, 212, 0.8), 0 0 60px rgba(59, 130, 246, 0.4)';
+  // Smooth scroll function with epic animation
+  const scrollToServices = () => {
+    const servicesSection = document.getElementById('services');
+    if (servicesSection) {
+      // Add multiple epic effects to the button
+      const button = document.querySelector('.services-button');
+      if (button) {
+        // Create a ripple effect
+        button.style.transform = 'scale(0.95)';
+        button.style.boxShadow = '0 0 30px rgba(6, 182, 212, 0.8), 0 0 60px rgba(59, 130, 246, 0.4)';
+        
+        setTimeout(() => {
+          button.style.transform = 'scale(1)';
+          button.style.boxShadow = '';
+        }, 200);
+        
+        // Add a temporary glow effect
+        button.classList.add('animate-pulse');
+        setTimeout(() => button.classList.remove('animate-pulse'), 600);
+      }
       
+      // Smooth scroll with easing
+      servicesSection.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+      
+      // Add a subtle shake effect to the services section when reached
       setTimeout(() => {
-        button.style.transform = 'scale(1)';
-        button.style.boxShadow = '';
-      }, 200);
-      
-      // Add a temporary glow effect
-      button.classList.add('animate-pulse');
-      setTimeout(() => button.classList.remove('animate-pulse'), 600);
+        servicesSection.style.animation = 'subtle-bounce 0.6s ease-out';
+        setTimeout(() => {
+          servicesSection.style.animation = '';
+        }, 600);
+      }, 800);
     }
-    
-    // Open the AI demo modal
-    setDemoStep(0);
-    setIsAiDemoOpen(true);
   };
-
-  // AI Demo steps
-  const demoSteps = [
-    {
-      title: "🧠 AI Analyse Start",
-      description: "Uw bedrijfsdata wordt geanalyseerd...",
-      progress: 20,
-      details: "Machine learning algoritmes scannen uw processen"
-    },
-    {
-      title: "📊 Patroon Herkenning",
-      description: "Inefficiënties worden gedetecteerd...",
-      progress: 40,
-      details: "Neural networks identificeren optimalisatie kansen"
-    },
-    {
-      title: "⚡ Automatisering Ontwerp",
-      description: "AI-oplossingen worden gegenereerd...",
-      progress: 60,
-      details: "Intelligente workflows worden gecreëerd"
-    },
-    {
-      title: "🚀 Implementatie Plan",
-      description: "Strategie wordt geformuleerd...",
-      progress: 80,
-      details: "Roadmap voor AI-transformatie wordt opgesteld"
-    },
-    {
-      title: "✅ Resultaat Preview",
-      description: "Voorspelde verbeteringen:",
-      progress: 100,
-      details: "40% efficiëntieverbetering • 30% kostenbesparing • 10x snellere output"
-    }
-  ];
-
-  // Auto-advance demo steps
-  useEffect(() => {
-    if (isAiDemoOpen && demoStep < demoSteps.length - 1) {
-      const timer = setTimeout(() => {
-        setDemoStep(prev => prev + 1);
-      }, 2000);
-      return () => clearTimeout(timer);
-    }
-  }, [isAiDemoOpen, demoStep, demoSteps.length]);
 
   // Navigation items
   const navItems = [
@@ -266,7 +234,7 @@ function App() {
               >
                 <Button 
                   size="lg" 
-                  onClick={launchAiDemo}
+                  onClick={scrollToServices}
                   className="services-button relative bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white px-8 py-3 overflow-hidden border-2 border-transparent hover:border-cyan-400/50 transition-all duration-500"
                 >
                   {/* Animated background layers */}
@@ -616,7 +584,7 @@ function App() {
                     </div>
                     <div>
                       <p className="text-white font-medium">E-mail</p>
-                      <p className="text-slate-300">vorixaai@gmail.com</p>
+                      <p className="text-slate-300">contact@vorixaai.com</p>
                     </div>
                   </div>
                   
@@ -664,155 +632,6 @@ function App() {
         </div>
       </section>
 
-      {/* AI Automation Demo Modal */}
-      {isAiDemoOpen && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4"
-          onClick={() => setIsAiDemoOpen(false)}
-        >
-          <motion.div
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0.8, opacity: 0 }}
-            className="bg-slate-900 border border-slate-700 rounded-2xl p-8 max-w-2xl w-full relative overflow-hidden"
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* Animated background */}
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 to-cyan-900/20"></div>
-            <motion.div
-              className="absolute inset-0 opacity-30"
-              animate={{
-                background: [
-                  "radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 50%)",
-                  "radial-gradient(circle at 80% 50%, rgba(6, 182, 212, 0.1) 0%, transparent 50%)",
-                  "radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 50%)"
-                ]
-              }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-            />
-            
-            {/* Close button */}
-            <button
-              onClick={() => setIsAiDemoOpen(false)}
-              className="absolute top-4 right-4 text-slate-400 hover:text-white transition-colors z-10"
-            >
-              <X className="w-6 h-6" />
-            </button>
-            
-            {/* Demo content */}
-            <div className="relative z-10">
-              <motion.div
-                key={demoStep}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                className="text-center mb-8"
-              >
-                <h2 className="text-3xl font-bold text-white mb-4">
-                  VorixaAI Automatisatie Demo
-                </h2>
-                <p className="text-slate-300 text-lg">
-                  Zie hoe onze AI uw bedrijf kan transformeren
-                </p>
-              </motion.div>
-              
-              {/* Progress bar */}
-              <div className="mb-8">
-                <div className="flex justify-between text-sm text-slate-400 mb-2">
-                  <span>Voortgang</span>
-                  <span>{demoSteps[demoStep]?.progress}%</span>
-                </div>
-                <div className="w-full bg-slate-700 rounded-full h-3 overflow-hidden">
-                  <motion.div
-                    className="h-full bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full"
-                    initial={{ width: 0 }}
-                    animate={{ width: `${demoSteps[demoStep]?.progress}%` }}
-                    transition={{ duration: 1, ease: "easeOut" }}
-                  />
-                </div>
-              </div>
-              
-              {/* Current step */}
-              <motion.div
-                key={demoStep}
-                initial={{ opacity: 0, x: 50 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6 }}
-                className="bg-slate-800/50 rounded-xl p-6 border border-slate-600"
-              >
-                <h3 className="text-2xl font-semibold text-white mb-3">
-                  {demoSteps[demoStep]?.title}
-                </h3>
-                <p className="text-cyan-300 text-lg mb-4">
-                  {demoSteps[demoStep]?.description}
-                </p>
-                <p className="text-slate-300">
-                  {demoSteps[demoStep]?.details}
-                </p>
-                
-                {/* Loading animation for non-final steps */}
-                {demoStep < demoSteps.length - 1 && (
-                  <div className="flex items-center mt-4">
-                    <motion.div
-                      animate={{ rotate: 360 }}
-                      transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                      className="w-5 h-5 border-2 border-cyan-400 border-t-transparent rounded-full mr-3"
-                    />
-                    <span className="text-slate-400">Verwerking...</span>
-                  </div>
-                )}
-                
-                {/* Final step actions */}
-                {demoStep === demoSteps.length - 1 && (
-                  <div className="mt-6 flex flex-col sm:flex-row gap-4">
-                    <Button
-                      onClick={() => {
-                        setIsAiDemoOpen(false);
-                        document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' });
-                      }}
-                      className="bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white"
-                    >
-                      Bekijk Onze Diensten
-                      <ArrowRight className="ml-2 w-4 h-4" />
-                    </Button>
-                    <Button
-                      onClick={() => {
-                        setIsAiDemoOpen(false);
-                        setIsContactFormOpen(true);
-                      }}
-                      variant="outline"
-                      className="border-slate-600 text-white hover:bg-slate-700"
-                    >
-                      Start Gesprek
-                    </Button>
-                  </div>
-                )}
-              </motion.div>
-              
-              {/* Step indicators */}
-              <div className="flex justify-center mt-8 space-x-2">
-                {demoSteps.map((_, index) => (
-                  <motion.div
-                    key={index}
-                    className={`w-3 h-3 rounded-full ${
-                      index <= demoStep ? 'bg-cyan-400' : 'bg-slate-600'
-                    }`}
-                    animate={{
-                      scale: index === demoStep ? 1.2 : 1,
-                      opacity: index <= demoStep ? 1 : 0.5
-                    }}
-                    transition={{ duration: 0.3 }}
-                  />
-                ))}
-              </div>
-            </div>
-          </motion.div>
-        </motion.div>
-      )}
-
       {/* Footer */}
       <footer className="bg-slate-900 border-t border-slate-700">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -842,7 +661,7 @@ function App() {
             <div>
               <h4 className="text-white font-semibold mb-4">Contact</h4>
               <ul className="space-y-2 text-slate-300">
-                <li>vorixaai@gmail.com</li>
+                <li>contact@vorixaai.com</li>
                 <li>+31 6 20 70 92 56</li>
                 <li>Utrecht, Nederland</li>
               </ul>
