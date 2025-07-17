@@ -333,30 +333,27 @@ function App() {
                     </DialogDescription>
                   </DialogHeader>
                   <form 
-                    name="contact" 
-                    method="POST" 
-                    data-netlify="true"
                     onSubmit={(e) => {
                       e.preventDefault();
                       const formData = new FormData(e.target);
+                      const name = formData.get('name');
+                      const email = formData.get('email');
+                      const message = formData.get('message');
                       
-                      fetch("/", {
-                        method: "POST",
-                        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                        body: new URLSearchParams(formData).toString(),
-                      })
-                      .then(() => {
-                        alert("Bedankt voor uw bericht! We nemen zo snel mogelijk contact met u op.");
-                        setIsContactFormOpen(false);
-                        e.target.reset();
-                      })
-                      .catch((error) => {
-                        alert("Er is een fout opgetreden. Probeer het opnieuw of neem direct contact met ons op via contact@vorixaai.com");
-                        console.error("Form submission error:", error);
-                      });
+                      // Create mailto link
+                      const subject = encodeURIComponent(`Contact van ${name} via VorixaAI website`);
+                      const body = encodeURIComponent(`Naam: ${name}\nEmail: ${email}\n\nBericht:\n${message}`);
+                      const mailtoLink = `mailto:contact@vorixaai.com?subject=${subject}&body=${body}`;
+                      
+                      // Open email client
+                      window.location.href = mailtoLink;
+                      
+                      // Show confirmation and close modal
+                      alert("Uw e-mailclient wordt geopend om het bericht te versturen. Als dit niet werkt, stuur dan direct een e-mail naar contact@vorixaai.com");
+                      setIsContactFormOpen(false);
+                      e.target.reset();
                     }}
                   >
-                    <input type="hidden" name="form-name" value="contact" />
                     <div className="grid gap-4 py-4">
                       <div className="grid grid-cols-4 items-center gap-4">
                         <label htmlFor="name" className="text-right">
