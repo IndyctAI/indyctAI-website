@@ -333,25 +333,45 @@ function App() {
                     </DialogDescription>
                   </DialogHeader>
                   <form 
-                    onSubmit={(e) => {
+                    onSubmit={async (e) => {
                       e.preventDefault();
                       const formData = new FormData(e.target);
                       const name = formData.get('name');
                       const email = formData.get('email');
                       const message = formData.get('message');
                       
-                      // Create mailto link
-                      const subject = encodeURIComponent(`Contact van ${name} via VorixaAI website`);
-                      const body = encodeURIComponent(`Naam: ${name}\nEmail: ${email}\n\nBericht:\n${message}`);
-                      const mailtoLink = `mailto:contact@vorixaai.com?subject=${subject}&body=${body}`;
+                      // Validate fields
+                      if (!name || !email || !message) {
+                        alert('Vul alstublieft alle velden in.');
+                        return;
+                      }
                       
-                      // Open email client
-                      window.location.href = mailtoLink;
-                      
-                      // Show confirmation and close modal
-                      alert("Uw e-mailclient wordt geopend om het bericht te versturen. Als dit niet werkt, stuur dan direct een e-mail naar contact@vorixaai.com");
-                      setIsContactFormOpen(false);
-                      e.target.reset();
+                      try {
+                        const response = await fetch('/.netlify/functions/send-email', {
+                          method: 'POST',
+                          headers: {
+                            'Content-Type': 'application/json',
+                          },
+                          body: JSON.stringify({
+                            name: name,
+                            email: email,
+                            message: message
+                          })
+                        });
+                        
+                        const result = await response.json();
+                        
+                        if (response.ok) {
+                          alert(result.message);
+                          setIsContactFormOpen(false);
+                          e.target.reset();
+                        } else {
+                          alert(result.error || 'Er is een fout opgetreden');
+                        }
+                      } catch (error) {
+                        console.error('Error:', error);
+                        alert('Er is een fout opgetreden. Probeer het opnieuw of neem direct contact met ons op via contact@vorixaai.com');
+                      }
                     }}
                   >
                     <div className="grid gap-4 py-4">
@@ -359,19 +379,19 @@ function App() {
                         <label htmlFor="name" className="text-right">
                           Naam
                         </label>
-                        <Input id="name" name="name" className="col-span-3 bg-slate-700 border-slate-600" />
+                        <Input id="name" name="name" required className="col-span-3 bg-slate-700 border-slate-600" />
                       </div>
                       <div className="grid grid-cols-4 items-center gap-4">
                         <label htmlFor="email" className="text-right">
                           Email
                         </label>
-                        <Input id="email" name="email" type="email" className="col-span-3 bg-slate-700 border-slate-600" />
+                        <Input id="email" name="email" type="email" required className="col-span-3 bg-slate-700 border-slate-600" />
                       </div>
                       <div className="grid grid-cols-4 items-center gap-4">
                         <label htmlFor="message" className="text-right">
                           Bericht
                         </label>
-                        <Textarea id="message" name="message" className="col-span-3 bg-slate-700 border-slate-600" />
+                        <Textarea id="message" name="message" required className="col-span-3 bg-slate-700 border-slate-600" />
                       </div>
                     </div>
                     <DialogFooter>
