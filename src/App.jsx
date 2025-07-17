@@ -332,7 +332,30 @@ function App() {
                       Vul het onderstaande formulier in en we nemen zo snel mogelijk contact met u op.
                     </DialogDescription>
                   </DialogHeader>
-                  <form name="contact" method="POST" data-netlify="true">
+                  <form 
+                    name="contact" 
+                    method="POST" 
+                    data-netlify="true"
+                    onSubmit={(e) => {
+                      e.preventDefault();
+                      const formData = new FormData(e.target);
+                      
+                      fetch("/", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                        body: new URLSearchParams(formData).toString(),
+                      })
+                      .then(() => {
+                        alert("Bedankt voor uw bericht! We nemen zo snel mogelijk contact met u op.");
+                        setIsContactFormOpen(false);
+                        e.target.reset();
+                      })
+                      .catch((error) => {
+                        alert("Er is een fout opgetreden. Probeer het opnieuw of neem direct contact met ons op via contact@vorixaai.com");
+                        console.error("Form submission error:", error);
+                      });
+                    }}
+                  >
                     <input type="hidden" name="form-name" value="contact" />
                     <div className="grid gap-4 py-4">
                       <div className="grid grid-cols-4 items-center gap-4">
