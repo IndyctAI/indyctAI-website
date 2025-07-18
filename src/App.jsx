@@ -47,6 +47,11 @@ function App() {
   const { scrollYProgress } = useScroll();
   const y = useTransform(scrollYProgress, [0, 1], ['0%', '50%']);
 
+  // Set document title
+  useEffect(() => {
+    document.title = 'VorixaAI - Uw Partner in Artificiële Intelligentie';
+  }, []);
+
   // Smooth scroll function with epic animation
   const scrollToServices = () => {
     const servicesSection = document.getElementById('services');
