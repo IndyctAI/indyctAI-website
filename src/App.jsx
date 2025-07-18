@@ -88,7 +88,7 @@ function App() {
   const navItems = [
     { name: 'Home', href: '#home' },
     { name: 'Diensten', href: '#services' },
-    { name: 'Over Mij', href: '#about' },
+    { name: 'Over VorixaAI', href: '#about' },
     { name: 'Contact', href: '#contact' },
   ];
 
@@ -223,7 +223,7 @@ function App() {
               </span>
             </h1>
             <p className="text-xl md:text-2xl text-slate-300 mb-8 max-w-3xl mx-auto">
-              Transformeer uw bedrijf met geavanceerde AI-oplossingen. Ik combineer menselijke creativiteit 
+              Transformeer uw bedrijf met geavanceerde AI-oplossingen. VorixaAI combineert menselijke creativiteit 
               met de kracht van artificiële intelligentie voor ongekende groei.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -647,7 +647,7 @@ function App() {
               transition={{ duration: 0.6, delay: 0.4 }}
             >
               Van strategisch advies tot implementatie van complexe AI-systemen, 
-              ik ben uw complete partner in artificiële intelligentie.
+              VorixaAI is uw complete partner in artificiële intelligentie.
             </motion.p>
           </motion.div>
 
@@ -721,17 +721,17 @@ function App() {
               transition={{ duration: 0.8 }}
             >
               <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-                Over <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">Mij</span>
+                Over <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">VorixaAI</span>
               </h2>
               <p className="text-lg text-slate-300 mb-6">
                 VorixaAI is opgericht met de visie om de kracht van artificiële intelligentie 
-                toegankelijk te maken voor bedrijven van elke omvang. Als gepassioneerde 
-                AI-expert en strategische consultant help ik bedrijven hun volledige potentieel te ontdekken.
+                toegankelijk te maken voor bedrijven van elke omvang. Met diepgaande expertise in 
+                AI-strategieën en implementatie helpt VorixaAI bedrijven hun volledige potentieel te ontdekken.
               </p>
               <p className="text-lg text-slate-300 mb-8">
-                Ik geloof in de synergie tussen mens en machine. Mijn AI-oplossingen zijn ontworpen 
+                VorixaAI gelooft in de synergie tussen mens en machine. Onze AI-oplossingen zijn ontworpen 
                 om uw team te versterken, niet te vervangen, waardoor uw medewerkers zich kunnen richten 
-                op taken met hogere waarde. U werkt direct met mij - geen tussenpersonen, alleen expertise.
+                op taken met hogere waarde. U krijgt directe toegang tot expertise zonder bureaucratie.
               </p>
             </motion.div>
             
@@ -787,7 +787,7 @@ function App() {
                 <CardHeader>
                   <CardTitle className="text-white text-2xl">Contactgegevens</CardTitle>
                   <CardDescription className="text-slate-300">
-                    Ik sta klaar om uw vragen te beantwoorden
+                    VorixaAI staat klaar om uw vragen te beantwoorden
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-6">
