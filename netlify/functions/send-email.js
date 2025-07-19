@@ -22,7 +22,7 @@ exports.handler = async (event, context) => {
     // In production, you would integrate with an email service like SendGrid, Mailgun, etc.
     
     // Simulate email sending
-    console.log('Email would be sent to:', 'contact@vorixaai.com');
+    console.log('Email would be sent to:', 'contact@indyctai.com');
     console.log('From:', name, email);
     console.log('Message:', message);
 

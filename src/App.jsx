@@ -27,6 +27,7 @@ import futuristicAi1 from './assets/images/futuristic_ai_1.png';
 import futuristicAi2 from './assets/images/futuristic_ai_2.png';
 import neuralNetwork1 from './assets/images/neural_network_1.jpg';
 import vorixaAILogo from './assets/images/vorixa_ai_logo.png';
+import indyctAILogo from './assets/images/indyctai_logo.png';
 import newAiBackground from './assets/images/new_ai_background.jpg';
 
 import { 
@@ -49,7 +50,7 @@ function App() {
 
   // Set document title
   useEffect(() => {
-    document.title = 'VorixaAI - Uw Partner in Artificiële Intelligentie';
+    document.title = 'IndyctAI - Uw Partner in Artificiële Intelligentie';
   }, []);
 
   // Smooth scroll function with epic animation
@@ -93,7 +94,7 @@ function App() {
   const navItems = [
     { name: 'Home', href: '#home' },
     { name: 'Diensten', href: '#services' },
-    { name: 'Over VorixaAI', href: '#about' },
+    { name: 'Over IndyctAI', href: '#about' },
     { name: 'Contact', href: '#contact' },
   ];
 
@@ -142,9 +143,9 @@ function App() {
             <div className="flex items-center">
               <div className="flex-shrink-0">
                 <div className="flex items-center">
-                  <img src={vorixaAILogo} alt="VorixaAI Logo" className="h-8 w-auto mr-2" />
+                  <img src={indyctAILogo} alt="IndyctAI Logo" className="h-8 w-auto mr-2" />
                   <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
-                    VorixaAI
+                    IndyctAI
                   </h1>
                 </div>
               </div>
@@ -228,7 +229,7 @@ function App() {
               </span>
             </h1>
             <p className="text-xl md:text-2xl text-slate-300 mb-8 max-w-3xl mx-auto">
-              Transformeer uw bedrijf met geavanceerde AI-oplossingen. VorixaAI combineert menselijke creativiteit 
+              Transformeer uw bedrijf met geavanceerde AI-oplossingen. IndyctAI combineert menselijke creativiteit 
               met de kracht van artificiële intelligentie voor ongekende groei.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -463,7 +464,7 @@ function App() {
                         }
                       } catch (error) {
                         console.error('Error:', error);
-                        alert('Er is een fout opgetreden. Probeer het opnieuw of neem direct contact met ons op via contact@vorixaai.com');
+                        alert('Er is een fout opgetreden. Probeer het opnieuw of neem direct contact met ons op via contact@indyctai.com');
                       }
                     }}
                   >
@@ -652,7 +653,7 @@ function App() {
               transition={{ duration: 0.6, delay: 0.4 }}
             >
               Van strategisch advies tot implementatie van complexe AI-systemen, 
-              VorixaAI is uw complete partner in artificiële intelligentie.
+              IndyctAI is uw complete partner in artificiële intelligentie.
             </motion.p>
           </motion.div>
 
@@ -726,15 +727,15 @@ function App() {
               transition={{ duration: 0.8 }}
             >
               <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-                Over <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">VorixaAI</span>
+                Over <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">IndyctAI</span>
               </h2>
               <p className="text-lg text-slate-300 mb-6">
-                VorixaAI is opgericht met de visie om de kracht van artificiële intelligentie 
+                IndyctAI is opgericht met de visie om de kracht van artificiële intelligentie 
                 toegankelijk te maken voor bedrijven van elke omvang. Met diepgaande expertise in 
-                AI-strategieën en implementatie helpt VorixaAI bedrijven hun volledige potentieel te ontdekken.
+                AI-strategieën en implementatie helpt IndyctAI bedrijven hun volledige potentieel te ontdekken.
               </p>
               <p className="text-lg text-slate-300 mb-8">
-                VorixaAI gelooft in de synergie tussen mens en machine. Onze AI-oplossingen zijn ontworpen 
+                IndyctAI gelooft in de synergie tussen mens en machine. Onze AI-oplossingen zijn ontworpen 
                 om uw team te versterken, niet te vervangen, waardoor uw medewerkers zich kunnen richten 
                 op taken met hogere waarde. U krijgt directe toegang tot expertise zonder bureaucratie.
               </p>
@@ -792,7 +793,7 @@ function App() {
                 <CardHeader>
                   <CardTitle className="text-white text-2xl">Contactgegevens</CardTitle>
                   <CardDescription className="text-slate-300">
-                    VorixaAI staat klaar om uw vragen te beantwoorden
+                    IndyctAI staat klaar om uw vragen te beantwoorden
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-6">
@@ -802,7 +803,7 @@ function App() {
                     </div>
                     <div>
                       <p className="text-white font-medium">E-mail</p>
-                      <p className="text-slate-300">contact@vorixaai.com</p>
+                      <p className="text-slate-300">contact@indyctai.com</p>
                     </div>
                   </div>
                   
@@ -856,9 +857,9 @@ function App() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div>
               <div className="flex items-center mb-4">
-                <img src={vorixaAILogo} alt="VorixaAI Logo" className="h-8 w-auto mr-2" />
+                <img src={indyctAILogo} alt="IndyctAI Logo" className="h-8 w-auto mr-2" />
                 <h3 className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
-                  VorixaAI
+                  IndyctAI
                 </h3>
               </div>
               <p className="text-slate-300 mb-4">
@@ -879,7 +880,7 @@ function App() {
             <div>
               <h4 className="text-white font-semibold mb-4">Contact</h4>
               <ul className="space-y-2 text-slate-300">
-                <li>contact@vorixaai.com</li>
+                <li>contact@indyctai.com</li>
                 <li>+31 6 20 70 92 56</li>
                 <li>Utrecht, Nederland</li>
               </ul>
@@ -888,7 +889,7 @@ function App() {
           
           <div className="border-t border-slate-700 mt-8 pt-8 text-center">
             <p className="text-slate-400">
-              © 2025 VorixaAI. Alle rechten voorbehouden.
+              © 2025 IndyctAI. Alle rechten voorbehouden.
             </p>
           </div>
         </div>
