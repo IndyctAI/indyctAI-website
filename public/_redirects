@@ -1,0 +1,10 @@
+# Redirect all traffic to the new domain
+https://vorixaai.com/* https://indyctai.com/:splat 301!
+https://www.vorixaai.com/* https://indyctai.com/:splat 301!
+
+# Handle www redirect for new domain
+https://www.indyctai.com/* https://indyctai.com/:splat 301!
+
+# Fallback for any other domains
+/* /index.html 200
+
