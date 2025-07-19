@@ -52,6 +52,7 @@ import { Textarea } from "./components/ui/textarea";
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isContactFormOpen, setIsContactFormOpen] = useState(false);
+  const [contactType, setContactType] = useState('persoonlijk');
   const { scrollYProgress } = useScroll();
   const y = useTransform(scrollYProgress, [0, 1], ['0%', '50%']);
 
@@ -440,6 +441,7 @@ function App() {
                       const name = formData.get('name');
                       const email = formData.get('email');
                       const message = formData.get('message');
+                      const companyName = formData.get('companyName');
                       
                       // Validate fields
                       if (!name || !email || !message) {
@@ -447,9 +449,25 @@ function App() {
                         return;
                       }
                       
+                      // Validate company name if business is selected
+                      if (contactType === 'bedrijf' && !companyName) {
+                        alert('Vul alstublieft de bedrijfsnaam in.');
+                        return;
+                      }
+                      
                       // Create mailto link with form data
-                      const subject = `Contact van ${name} via IndyctAI website`;
-                      const body = `Naam: ${name}\nE-mail: ${email}\n\nBericht:\n${message}`;
+                      const subject = contactType === 'bedrijf' 
+                        ? `Bedrijfscontact van ${companyName} via IndyctAI website`
+                        : `Contact van ${name} via IndyctAI website`;
+                      
+                      let body = `Type: ${contactType === 'bedrijf' ? 'Bedrijf' : 'Persoonlijk'}\n`;
+                      if (contactType === 'bedrijf') {
+                        body += `Bedrijfsnaam: ${companyName}\nContactpersoon: ${name}\n`;
+                      } else {
+                        body += `Naam: ${name}\n`;
+                      }
+                      body += `E-mail: ${email}\n\nBericht:\n${message}`;
+                      
                       const mailtoLink = `mailto:indyctai@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
                       
                       // Open email client
@@ -462,20 +480,67 @@ function App() {
                     }}
                   >
                     <div className="grid gap-4 py-4">
+                      {/* Contact Type Selection */}
                       <div className="grid grid-cols-4 items-center gap-4">
-                        <label htmlFor="name" className="text-right">
-                          Naam
+                        <label className="text-right text-sm">
+                          Type
+                        </label>
+                        <div className="col-span-3 flex gap-4">
+                          <label className="flex items-center gap-2 text-sm">
+                            <input
+                              type="radio"
+                              name="contactType"
+                              value="persoonlijk"
+                              checked={contactType === 'persoonlijk'}
+                              onChange={(e) => setContactType(e.target.value)}
+                              className="text-blue-600"
+                            />
+                            Persoonlijk
+                          </label>
+                          <label className="flex items-center gap-2 text-sm">
+                            <input
+                              type="radio"
+                              name="contactType"
+                              value="bedrijf"
+                              checked={contactType === 'bedrijf'}
+                              onChange={(e) => setContactType(e.target.value)}
+                              className="text-blue-600"
+                            />
+                            Bedrijf
+                          </label>
+                        </div>
+                      </div>
+
+                      {/* Company Name Field - Only show when "bedrijf" is selected */}
+                      {contactType === 'bedrijf' && (
+                        <div className="grid grid-cols-4 items-center gap-4">
+                          <label htmlFor="companyName" className="text-right text-sm">
+                            Bedrijfsnaam
+                          </label>
+                          <Input 
+                            id="companyName" 
+                            name="companyName" 
+                            required={contactType === 'bedrijf'}
+                            className="col-span-3 bg-slate-700 border-slate-600" 
+                            placeholder="Naam van uw bedrijf"
+                          />
+                        </div>
+                      )}
+
+                      <div className="grid grid-cols-4 items-center gap-4">
+                        <label htmlFor="name" className="text-right text-sm">
+                          {contactType === 'bedrijf' ? 'Contactpersoon' : 'Naam'}
                         </label>
                         <Input id="name" name="name" required className="col-span-3 bg-slate-700 border-slate-600" />
                       </div>
                       <div className="grid grid-cols-4 items-center gap-4">
-                        <label htmlFor="email" className="text-right">
+                        <label htmlFor="email" className="text-right text-sm">
                           Email
                         </label>
                         <Input id="email" name="email" type="email" required className="col-span-3 bg-slate-700 border-slate-600" />
                       </div>
                       <div className="grid grid-cols-4 items-center gap-4">
-                        <label htmlFor="message" className="text-right">
+                        <label htmlFor="message" className="text-right text-sm">
                           Bericht
                         </label>
                         <Textarea id="message" name="message" required className="col-span-3 bg-slate-700 border-slate-600" />
