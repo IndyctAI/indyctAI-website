@@ -434,7 +434,7 @@ function App() {
                     </DialogDescription>
                   </DialogHeader>
                   <form 
-                    onSubmit={async (e) => {
+                    onSubmit={(e) => {
                       e.preventDefault();
                       const formData = new FormData(e.target);
                       const name = formData.get('name');
@@ -447,33 +447,19 @@ function App() {
                         return;
                       }
                       
-                      try {
-                        const response = await fetch('/.netlify/functions/send-email', {
-                          method: 'POST',
-                          headers: {
-                            'Content-Type': 'application/json',
-                          },
-                          body: JSON.stringify({
-                            name: name,
-                            email: email,
-                            message: message
-                          })
-                        });
-                        
-                        const result = await response.json();
-                        
-                        if (response.ok) {
-                          alert(result.message);
-                          setIsContactFormOpen(false);
-                          e.target.reset();
-                        } else {
-                          alert(result.error || 'Er is een fout opgetreden');
-                        }
-                      } catch (error) {
-                        console.error('Error:', error);
-                        alert('Er is een fout opgetreden. Probeer het opnieuw of neem direct contact met ons op via indyctai@gmail.com');
-                      }
-                    }}
+                      // Create mailto link with form data
+                      const subject = `Contact van ${name} via IndyctAI website`;
+                      const body = `Naam: ${name}\nE-mail: ${email}\n\nBericht:\n${message}`;
+                      const mailtoLink = `mailto:indyctai@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                      
+                      // Open email client
+                      window.location.href = mailtoLink;
+                      
+                      // Show confirmation and close form
+                      alert('Uw e-mailclient wordt geopend om het bericht te versturen. Als dit niet werkt, stuur dan direct een e-mail naar indyctai@gmail.com');
+                      setIsContactFormOpen(false);
+                      e.target.reset();
+                    }}}}
                   >
                     <div className="grid gap-4 py-4">
                       <div className="grid grid-cols-4 items-center gap-4">
