@@ -426,7 +426,7 @@ function App() {
                     </Button>
                   </motion.div>
                 </DialogTrigger>
-                <DialogContent className="sm:max-w-[425px] bg-slate-800 border-slate-700 text-white">
+                <DialogContent className="sm:max-w-[425px] max-h-[90vh] overflow-y-auto bg-slate-800 border-slate-700 text-white">
                   <DialogHeader>
                     <DialogTitle>Neem Contact Op</DialogTitle>
                     <DialogDescription>
@@ -482,16 +482,16 @@ function App() {
                       </div>
                     </div>
                     
-                    {/* Suggestions Section */}
-                    <div className="mt-6 p-4 bg-slate-700/50 rounded-lg border border-slate-600">
-                      <h4 className="text-white font-semibold mb-3 flex items-center">
+                    {/* Suggestions Section - Compact for mobile */}
+                    <div className="mt-4 p-3 bg-slate-700/50 rounded-lg border border-slate-600">
+                      <h4 className="text-white font-semibold mb-2 flex items-center text-sm">
                         <span className="mr-2">💡</span>
-                        Niet zeker wat u nodig heeft? Hier zijn enkele ideeën:
+                        Niet zeker wat u nodig heeft? Klik op een idee:
                       </h4>
-                      <div className="grid grid-cols-1 gap-2 text-sm">
+                      <div className="grid grid-cols-1 gap-1 text-xs">
                         <motion.button
                           type="button"
-                          whileHover={{ scale: 1.02, backgroundColor: "rgba(59, 130, 246, 0.1)" }}
+                          whileHover={{ scale: 1.01, backgroundColor: "rgba(59, 130, 246, 0.1)" }}
                           className="text-left p-2 rounded text-slate-300 hover:text-white transition-colors"
                           onClick={() => {
                             const messageField = document.getElementById('message');
@@ -503,7 +503,7 @@ function App() {
                         
                         <motion.button
                           type="button"
-                          whileHover={{ scale: 1.02, backgroundColor: "rgba(59, 130, 246, 0.1)" }}
+                          whileHover={{ scale: 1.01, backgroundColor: "rgba(59, 130, 246, 0.1)" }}
                           className="text-left p-2 rounded text-slate-300 hover:text-white transition-colors"
                           onClick={() => {
                             const messageField = document.getElementById('message');
@@ -515,7 +515,7 @@ function App() {
                         
                         <motion.button
                           type="button"
-                          whileHover={{ scale: 1.02, backgroundColor: "rgba(59, 130, 246, 0.1)" }}
+                          whileHover={{ scale: 1.01, backgroundColor: "rgba(59, 130, 246, 0.1)" }}
                           className="text-left p-2 rounded text-slate-300 hover:text-white transition-colors"
                           onClick={() => {
                             const messageField = document.getElementById('message');
@@ -527,19 +527,7 @@ function App() {
                         
                         <motion.button
                           type="button"
-                          whileHover={{ scale: 1.02, backgroundColor: "rgba(59, 130, 246, 0.1)" }}
-                          className="text-left p-2 rounded text-slate-300 hover:text-white transition-colors"
-                          onClick={() => {
-                            const messageField = document.getElementById('message');
-                            messageField.value = "Mijn concurrenten gebruiken al AI. Hoe kan ik bijblijven en een voorsprong krijgen?";
-                          }}
-                        >
-                          🚀 "Hoe blijf ik voor op mijn concurrentie met AI?"
-                        </motion.button>
-                        
-                        <motion.button
-                          type="button"
-                          whileHover={{ scale: 1.02, backgroundColor: "rgba(59, 130, 246, 0.1)" }}
+                          whileHover={{ scale: 1.01, backgroundColor: "rgba(59, 130, 246, 0.1)" }}
                           className="text-left p-2 rounded text-slate-300 hover:text-white transition-colors"
                           onClick={() => {
                             const messageField = document.getElementById('message');
@@ -548,22 +536,7 @@ function App() {
                         >
                           🎯 "Ik wil een gratis strategiegesprek"
                         </motion.button>
-                        
-                        <motion.button
-                          type="button"
-                          whileHover={{ scale: 1.02, backgroundColor: "rgba(59, 130, 246, 0.1)" }}
-                          className="text-left p-2 rounded text-slate-300 hover:text-white transition-colors"
-                          onClick={() => {
-                            const messageField = document.getElementById('message');
-                            messageField.value = "Ik heb een specifiek AI-project in gedachten en wil weten of jullie dit kunnen realiseren.";
-                          }}
-                        >
-                          ⚡ "Ik heb een specifiek AI-project in gedachten"
-                        </motion.button>
                       </div>
-                      <p className="text-xs text-slate-400 mt-3">
-                        💡 Tip: Klik op een suggestie om deze automatisch in uw bericht in te vullen
-                      </p>
                     </div>
                     
                     <DialogFooter>
