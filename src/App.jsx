@@ -471,7 +471,7 @@ function App() {
                         }
                       } catch (error) {
                         console.error('Error:', error);
-                        alert('Er is een fout opgetreden. Probeer het opnieuw of neem direct contact met ons op via contact@indyctai.com');
+                        alert('Er is een fout opgetreden. Probeer het opnieuw of neem direct contact met ons op via indyctai@gmail.com');
                       }
                     }}
                   >
@@ -810,7 +810,7 @@ function App() {
                     </div>
                     <div>
                       <p className="text-white font-medium">E-mail</p>
-                      <p className="text-slate-300">contact@indyctai.com</p>
+                      <p className="text-slate-300">indyctai@gmail.com</p>
                     </div>
                   </div>
                   
@@ -887,7 +887,7 @@ function App() {
             <div>
               <h4 className="text-white font-semibold mb-4">Contact</h4>
               <ul className="space-y-2 text-slate-300">
-                <li>contact@indyctai.com</li>
+                <li>indyctai@gmail.com</li>
                 <li>+31 6 20 70 92 56</li>
                 <li>Utrecht, Nederland</li>
               </ul>
