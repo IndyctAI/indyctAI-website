@@ -31,6 +31,7 @@ import indyctAILogo from './assets/images/indyctai_logo.png';
 import indyctAIIcon from './assets/images/indyctai_logo_icon.png';
 import indyctAITransparent from './assets/images/indyctai_logo_transparent.png';
 import indyctAINoBg from './assets/images/indyctai_logo_no_bg.png';
+import IndyctAILogo from './components/IndyctAILogo';
 import newAiBackground from './assets/images/new_ai_background.jpg';
 
 import { 
@@ -146,7 +147,7 @@ function App() {
             <div className="flex items-center">
               <div className="flex-shrink-0">
                 <div className="flex items-center">
-                  <img src={indyctAINoBg} alt="IndyctAI Logo" className="h-8 w-auto mr-2" />
+                  <IndyctAILogo className="h-8 w-auto mr-2" />
                   <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
                     IndyctAI
                   </h1>
@@ -860,7 +861,7 @@ function App() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div>
               <div className="flex items-center mb-4">
-                <img src={indyctAINoBg} alt="IndyctAI Logo" className="h-8 w-auto mr-2" />
+                <IndyctAILogo className="h-8 w-auto mr-2" />
                 <h3 className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
                   IndyctAI
                 </h3>
