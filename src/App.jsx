@@ -459,7 +459,7 @@ function App() {
                       alert('Uw e-mailclient wordt geopend om het bericht te versturen. Als dit niet werkt, stuur dan direct een e-mail naar indyctai@gmail.com');
                       setIsContactFormOpen(false);
                       e.target.reset();
-                    }}}}
+                    }}
                   >
                     <div className="grid gap-4 py-4">
                       <div className="grid grid-cols-4 items-center gap-4">
