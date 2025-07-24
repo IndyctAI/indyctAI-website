@@ -15,7 +15,9 @@ import {
   MapPin,
   Menu,
   X,
-  ChevronDown
+  ChevronDown,
+  MessageCircle,
+  Send
 } from 'lucide-react';
 import './App.css';
 
@@ -53,6 +55,10 @@ function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isContactFormOpen, setIsContactFormOpen] = useState(false);
   const [contactType, setContactType] = useState('persoonlijk');
+  const [isChatbotOpen, setIsChatbotOpen] = useState(false);
+  const [chatMessages, setChatMessages] = useState([
+    { type: 'bot', message: 'Hallo! Ik ben de IndyctAI assistent. Hoe kan ik u helpen met vragen over AI?' }
+  ]);
   const { scrollYProgress } = useScroll();
   const y = useTransform(scrollYProgress, [0, 1], ['0%', '50%']);
 
@@ -97,6 +103,47 @@ function App() {
       }, 800);
     }
   };
+
+  // Chatbot logic
+  const chatbotResponses = {
+    'wat is ai': 'Artificiële Intelligentie (AI) is technologie die computers in staat stelt om taken uit te voeren die normaal menselijke intelligentie vereisen, zoals leren, redeneren en probleemoplossing.',
+    'kosten': 'De kosten van AI-implementatie variëren sterk afhankelijk van uw specifieke behoeften. We bieden een gratis strategiegesprek aan om uw situatie te bespreken en een op maat gemaakte offerte te maken.',
+    'voordelen': 'AI kan uw bedrijf helpen met: 40% efficiëntiewinst, geautomatiseerde processen, betere besluitvorming, kostenbesparingen en concurrentievoordeel.',
+    'implementatie': 'Onze AI-implementatie bestaat uit 4 fasen: 1) Strategieanalyse, 2) Proof of Concept, 3) Ontwikkeling & Integratie, 4) Training & Ondersteuning.',
+    'contact': 'U kunt contact met ons opnemen via het contactformulier, e-mail (indyctai@gmail.com) of telefoon (+31 6 20 70 92 56). We reageren binnen 24 uur!',
+    'diensten': 'Wij bieden: AI Strategie & Advies, Machine Learning Oplossingen, Procesautomatisering, Data Analytics & Insights, en AI Training & Workshops.',
+    'ervaring': 'IndyctAI heeft uitgebreide ervaring met AI-implementaties in verschillende sectoren. We hebben al meer dan 50 bedrijven geholpen met hun AI-transformatie.',
+    'tijd': 'De implementatietijd varieert van 2-6 maanden, afhankelijk van de complexiteit van uw project. We starten altijd met een Proof of Concept van 2-4 weken.'
+  };
+
+  const handleChatbotMessage = (userMessage) => {
+    // Add user message
+    setChatMessages(prev => [...prev, { type: 'user', message: userMessage }]);
+    
+    // Find response
+    const lowerMessage = userMessage.toLowerCase();
+    let response = 'Dat is een interessante vraag! Voor specifieke informatie over uw situatie raad ik aan om contact op te nemen via ons contactformulier. Onze experts kunnen u persoonlijk adviseren.';
+    
+    for (const [key, value] of Object.entries(chatbotResponses)) {
+      if (lowerMessage.includes(key)) {
+        response = value;
+        break;
+      }
+    }
+    
+    // Add bot response with delay
+    setTimeout(() => {
+      setChatMessages(prev => [...prev, { type: 'bot', message: response }]);
+    }, 1000);
+  };
+
+  const quickQuestions = [
+    'Wat is AI?',
+    'Wat kosten jullie diensten?',
+    'Wat zijn de voordelen van AI?',
+    'Hoe werkt implementatie?',
+    'Hoe kan ik contact opnemen?'
+  ];
 
   // Navigation items
   const navItems = [
@@ -925,6 +972,108 @@ function App() {
           </div>
         </div>
       </footer>
+
+      {/* Chatbot */}
+      <div className="fixed bottom-4 right-4 z-50">
+        {/* Chatbot Toggle Button */}
+        {!isChatbotOpen && (
+          <motion.button
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            onClick={() => setIsChatbotOpen(true)}
+            className="bg-gradient-to-r from-blue-600 to-cyan-600 text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+          >
+            <MessageCircle className="w-6 h-6" />
+          </motion.button>
+        )}
+
+        {/* Chatbot Window */}
+        {isChatbotOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: 20, scale: 0.9 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 20, scale: 0.9 }}
+            className="bg-slate-800 border border-slate-700 rounded-lg shadow-2xl w-80 h-96 flex flex-col"
+          >
+            {/* Chatbot Header */}
+            <div className="bg-gradient-to-r from-blue-600 to-cyan-600 text-white p-4 rounded-t-lg flex justify-between items-center">
+              <div className="flex items-center">
+                <div className="w-3 h-3 bg-green-400 rounded-full mr-2 animate-pulse"></div>
+                <h3 className="font-semibold">IndyctAI Assistent</h3>
+              </div>
+              <button
+                onClick={() => setIsChatbotOpen(false)}
+                className="text-white hover:text-gray-200 transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* Chat Messages */}
+            <div className="flex-1 p-4 overflow-y-auto space-y-3">
+              {chatMessages.map((msg, index) => (
+                <div
+                  key={index}
+                  className={`flex ${msg.type === 'user' ? 'justify-end' : 'justify-start'}`}
+                >
+                  <div
+                    className={`max-w-xs p-3 rounded-lg text-sm ${
+                      msg.type === 'user'
+                        ? 'bg-blue-600 text-white'
+                        : 'bg-slate-700 text-slate-200'
+                    }`}
+                  >
+                    {msg.message}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Quick Questions */}
+            <div className="p-3 border-t border-slate-700">
+              <div className="flex flex-wrap gap-1 mb-3">
+                {quickQuestions.map((question, index) => (
+                  <button
+                    key={index}
+                    onClick={() => handleChatbotMessage(question)}
+                    className="text-xs bg-slate-700 text-slate-300 px-2 py-1 rounded hover:bg-slate-600 transition-colors"
+                  >
+                    {question}
+                  </button>
+                ))}
+              </div>
+
+              {/* Message Input */}
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  const input = e.target.message;
+                  if (input.value.trim()) {
+                    handleChatbotMessage(input.value);
+                    input.value = '';
+                  }
+                }}
+                className="flex gap-2"
+              >
+                <input
+                  name="message"
+                  type="text"
+                  placeholder="Stel uw vraag..."
+                  className="flex-1 bg-slate-700 border border-slate-600 rounded px-3 py-2 text-sm text-white placeholder-slate-400 focus:outline-none focus:border-blue-500"
+                />
+                <button
+                  type="submit"
+                  className="bg-blue-600 text-white px-3 py-2 rounded hover:bg-blue-700 transition-colors"
+                >
+                  <Send className="w-4 h-4" />
+                </button>
+              </form>
+            </div>
+          </motion.div>
+        )}
+      </div>
     </div>
   );
 }
