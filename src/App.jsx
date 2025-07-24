@@ -140,26 +140,142 @@ function App() {
     } catch (error) {
       console.error('Chat API Error:', error);
       
-      // Enhanced fallback responses
+      // Much more diverse and intelligent fallback responses
       const lowerMessage = userMessage.toLowerCase();
-      let response = 'Ik begrijp uw interesse in AI! Voor een persoonlijk advies over hoe AI uw bedrijf kan transformeren, plan dan een gratis strategiegesprek in via ons contactformulier. Onze experts bespreken graag de mogelijkheden met u.';
+      let response = '';
       
-      // Intelligent keyword matching with better responses
-      if (lowerMessage.includes('ai') || lowerMessage.includes('artificiële intelligentie') || lowerMessage.includes('machine learning')) {
-        response = 'AI kan uw bedrijf revolutioneren! Het automatiseert processen, genereert inzichten uit data en verbetert besluitvorming. IndyctAI ontwikkelt AI-strategieën die perfect passen bij uw doelen. Van chatbots tot predictive analytics - we maken AI toegankelijk voor uw bedrijf. Wilt u een gratis strategiegesprek?';
+      // Create arrays of diverse responses for each category
+      const generalResponses = [
+        'Interessante vraag! AI biedt enorme mogelijkheden voor bedrijven. Laten we eens kijken hoe we uw specifieke uitdaging kunnen aanpakken.',
+        'Dat is precies waar IndyctAI u mee kan helpen! We maken AI toegankelijk en praktisch toepasbaar voor uw bedrijf.',
+        'Geweldige vraag! AI kan uw bedrijfsprocessen echt transformeren. Wilt u weten hoe we dat voor u kunnen realiseren?',
+        'Daar hebben we veel ervaring mee! Laat me u vertellen hoe IndyctAI dit soort uitdagingen aanpakt.',
+        'Perfect timing voor deze vraag! AI ontwikkelt zich snel en we helpen bedrijven om hiervan te profiteren.'
+      ];
+
+      const aiResponses = [
+        'AI revolutioneert bedrijven door slimme automatisering! Van chatbots die 24/7 klanten helpen tot algoritmes die voorspellen wat klanten willen. IndyctAI maakt deze technologie toegankelijk voor uw bedrijf. Waar wilt u beginnen?',
+        'Artificiële Intelligentie is als een digitale expert die nooit moe wordt! Het analyseert patronen, automatiseert taken en geeft inzichten die mensen over het hoofd zien. We helpen u de juiste AI-strategie te kiezen.',
+        'AI betekent slimmere beslissingen, snellere processen en tevreden klanten! Denk aan automatische klantenservice, voorspellende analyses of slimme aanbevelingen. Welk proces wilt u als eerste verbeteren?',
+        'Machine Learning kan uw data laten "praten"! Het ontdekt verborgen patronen, voorspelt trends en optimaliseert processen. IndyctAI heeft al 50+ bedrijven geholpen hun data te monetiseren.'
+      ];
+
+      const costResponses = [
+        'AI-investeringen variëren enorm! Een simpele chatbot start rond €5.000, terwijl complexe machine learning systemen €50.000+ kunnen kosten. Goed nieuws: we starten altijd met een gratis strategieanalyse om uw budget optimaal te benutten.',
+        'Slimme vraag over kosten! De meeste AI-projecten betalen zichzelf terug binnen 6-18 maanden door efficiëntiewinst. We maken transparante offertes gebaseerd op uw specifieke behoeften en verwachte ROI.',
+        'Budget is belangrijk bij AI! We werken met verschillende prijsmodellen: van €5.000 voor automatisering tot €25.000+ voor custom ML-oplossingen. Elke investering wordt berekend op basis van verwachte besparingen.',
+        'AI-kosten hangen af van complexiteit en scope. Een chatbot kost anders dan predictive analytics! We bieden altijd eerst een gratis strategiegesprek om uw situatie te analyseren en eerlijke prijzen te geven.'
+      ];
+
+      const timeResponses = [
+        'Snelheid is cruciaal! We starten met een 2-4 weken Proof of Concept om snel resultaat te tonen. Volledige implementatie duurt 2-6 maanden, afhankelijk van complexiteit. Snelle wins zijn mogelijk binnen weken!',
+        'Tijdlijn hangt af van uw ambities! Eenvoudige automatisering kan binnen 4-8 weken live zijn, complexe AI-systemen duren 3-6 maanden. We plannen altijd quick wins om vroeg waarde te leveren.',
+        'Geduld loont bij AI! Een gedegen implementatie duurt 2-6 maanden, maar we zorgen voor tastbare resultaten binnen de eerste maand. Kwaliteit gaat voor snelheid, maar we zijn wel efficiënt!',
+        'Implementatietijd varieert per project! Chatbots zijn snel (4-6 weken), machine learning duurt langer (3-6 maanden). We starten altijd met een pilot om de aanpak te valideren voordat we volledig uitrollen.'
+      ];
+
+      const experienceResponses = [
+        'IndyctAI heeft een indrukwekkend track record! 50+ succesvolle projecten in retail, logistiek, finance en healthcare. Van startup tot multinational - we passen onze aanpak aan uw schaal en sector.',
+        'Onze ervaring spreekt boekdelen! E-commerce automatisering, predictive maintenance, klantsegmentatie - we hebben het allemaal gedaan. Tijdens een strategiegesprek delen we relevante cases uit uw branche.',
+        'Trots op onze resultaten! Klanten zien gemiddeld 40% efficiëntiewinst en ROI binnen 12 maanden. We hebben ervaring van kleine webshops tot grote fabrieken. Elke sector heeft unieke AI-kansen.',
+        'Bewezen expertise in diverse sectoren! Van automatische factuurverwerking tot slimme voorraadoptimalisatie. We combineren technische kennis met bedrijfsinzicht om praktische oplossingen te leveren.'
+      ];
+
+      // Intelligent keyword matching with diverse responses
+      if (lowerMessage.includes('hallo') || lowerMessage.includes('hoi') || lowerMessage.includes('dag') || lowerMessage.includes('hey') || lowerMessage.includes('hi')) {
+        const greetings = [
+          'Hallo! Wat fijn dat u IndyctAI bezoekt! Ik ben hier om al uw vragen over AI en onze diensten te beantwoorden. Waarmee kan ik u helpen?',
+          'Hoi daar! Leuk u te ontmoeten! Ik ben de IndyctAI assistent en help graag met vragen over kunstmatige intelligentie. Waar bent u nieuwsgierig naar?',
+          'Goedendag! Welkom bij IndyctAI! Ik sta klaar om u te helpen met alles over AI, automatisering en hoe we uw bedrijf kunnen transformeren.',
+          'Hey! Fijn dat u er bent! Als AI-expert van IndyctAI help ik graag met uw vragen. Wat houdt u bezig op het gebied van technologie?'
+        ];
+        response = greetings[Math.floor(Math.random() * greetings.length)];
+      } else if (lowerMessage.includes('hoe gaat het') || lowerMessage.includes('hoe is het') || lowerMessage.includes('alles goed')) {
+        const statusResponses = [
+          'Met mij gaat het uitstekend, dank je! Ik ben altijd enthousiast om over AI te praten. En met u? Hoe kan IndyctAI uw dag beter maken?',
+          'Heel goed! Ik ben vol energie om u te helpen met AI-vragen. Hoe gaat het met uw bedrijf? Zijn er processen die u graag zou willen automatiseren?',
+          'Prima! Ik geniet ervan om mensen te helpen AI te begrijpen. En u? Wat brengt u naar IndyctAI vandaag?',
+          'Geweldig! Elke dag leer ik bij over nieuwe AI-ontwikkelingen. Hoe staat het met uw digitale transformatie?'
+        ];
+        response = statusResponses[Math.floor(Math.random() * statusResponses.length)];
+      } else if (lowerMessage.includes('help') || lowerMessage.includes('hulp') || lowerMessage.includes('kunnen jullie') || lowerMessage.includes('kan je')) {
+        const helpResponses = [
+          'Natuurlijk help ik u graag! IndyctAI is er om AI toegankelijk te maken voor elk bedrijf. Of het nu gaat om automatisering, data-analyse of slimme chatbots - we hebben de expertise. Wat is uw grootste uitdaging?',
+          'Absoluut! Dat is precies waarom ik hier ben. IndyctAI helpt bedrijven met AI-strategieën, automatisering en digitale transformatie. Vertel eens, waar loopt u tegenaan?',
+          'Zeker weten! We zijn gespecialiseerd in het oplossen van bedrijfsuitdagingen met AI. Van klantenservice tot voorraadoptimalisatie - we maken het mogelijk. Waar denkt u aan?',
+          'Met alle plezier! IndyctAI transformeert bedrijven met slimme AI-oplossingen. Procesautomatisering, data-inzichten, chatbots - we doen het allemaal. Wat houdt u bezig?'
+        ];
+        response = helpResponses[Math.floor(Math.random() * helpResponses.length)];
+      } else if (lowerMessage.includes('dank') || lowerMessage.includes('bedankt') || lowerMessage.includes('thanks')) {
+        const thankResponses = [
+          'Graag gedaan! Het was me een genoegen om u te helpen. Heeft u nog andere vragen over AI of IndyctAI\'s diensten?',
+          'Heel graag gedaan! Ik help altijd graag met AI-vragen. Mocht u meer willen weten, ik ben er voor u!',
+          'Met plezier! Dat is waar ik voor ben. Als u nog meer wilt weten over hoe AI uw bedrijf kan helpen, vraag gerust!',
+          'Geen probleem! Fijn dat ik kon helpen. Voor verdere vragen over AI-implementatie ben ik altijd beschikbaar!'
+        ];
+        response = thankResponses[Math.floor(Math.random() * thankResponses.length)];
+      } else if (lowerMessage.includes('doei') || lowerMessage.includes('dag') || lowerMessage.includes('tot ziens') || lowerMessage.includes('bye')) {
+        const goodbyeResponses = [
+          'Tot ziens! Het was leuk om met u te praten. Mocht u nog vragen hebben over AI, kom gerust terug. Succes met uw plannen!',
+          'Dag! Fijn dat we konden praten over AI-mogelijkheden. Ik hoop u snel weer te zien. Veel succes!',
+          'Tot de volgende keer! Vergeet niet: IndyctAI staat altijd klaar om uw AI-dromen waar te maken. Prettige dag verder!',
+          'Doei! Bedankt voor het interessante gesprek. Als u besluit om met AI aan de slag te gaan, weet u ons te vinden!'
+        ];
+        response = goodbyeResponses[Math.floor(Math.random() * goodbyeResponses.length)];
+      } else if (lowerMessage.includes('wat doe je') || lowerMessage.includes('wie ben je') || lowerMessage.includes('wat ben je')) {
+        const identityResponses = [
+          'Ik ben de AI-assistent van IndyctAI! Mijn missie is om u te helpen begrijpen hoe kunstmatige intelligentie uw bedrijf kan transformeren. Ik ken alles over onze diensten en AI-mogelijkheden.',
+          'Leuke vraag! Ik ben een chatbot (ironisch, toch?) die u helpt met vragen over AI en IndyctAI\'s diensten. Ik ben hier 24/7 om u te informeren over AI-strategieën en automatisering.',
+          'Ik ben uw persoonlijke AI-gids! Ik help bedrijven begrijpen hoe ze AI kunnen inzetten voor groei en efficiëntie. Van chatbots tot machine learning - ik weet er alles van!',
+          'Ik ben de digitale ambassadeur van IndyctAI! Mijn taak is om AI toegankelijk en begrijpelijk te maken voor iedereen. Ik beantwoord vragen en help bij het ontdekken van AI-kansen.'
+        ];
+        response = identityResponses[Math.floor(Math.random() * identityResponses.length)];
+      } else if (lowerMessage.includes('interessant') || lowerMessage.includes('cool') || lowerMessage.includes('gaaf') || lowerMessage.includes('wow')) {
+        const excitementResponses = [
+          'Dat vind ik ook! AI is echt fascinerend en de mogelijkheden zijn eindeloos. Wat vindt u het meest interessant aan AI?',
+          'Precies! AI ontwikkelt zich zo snel en biedt zoveel kansen. Welk aspect van AI spreekt u het meest aan?',
+          'Helemaal mee eens! Het is geweldig om te zien hoe AI bedrijven kan transformeren. Heeft u al ideeën hoe AI uw bedrijf zou kunnen helpen?',
+          'Ja toch! AI is echt de toekomst. IndyctAI maakt deze spannende technologie toegankelijk voor alle bedrijven. Waar wilt u meer over weten?'
+        ];
+        response = excitementResponses[Math.floor(Math.random() * excitementResponses.length)];
+      } else if (lowerMessage.includes('niet') || lowerMessage.includes('nee') || lowerMessage.includes('geen interesse')) {
+        const negativeResponses = [
+          'Geen probleem! Niet iedereen is meteen overtuigd van AI. Mocht u ooit nieuwsgierig worden naar de mogelijkheden, dan ben ik er nog steeds!',
+          'Dat begrijp ik! AI kan overweldigend lijken. Als u ooit vragen heeft of gewoon nieuwsgierig wordt, help ik graag zonder verplichtingen.',
+          'Helemaal oké! AI is niet voor iedereen weggelegd op dit moment. Mocht u van gedachten veranderen, IndyctAI staat altijd klaar.',
+          'Geen zorgen! Timing is belangrijk bij AI-adoptie. Als u er ooit klaar voor bent, weet u ons te vinden voor een vrijblijvend gesprek.'
+        ];
+        response = negativeResponses[Math.floor(Math.random() * negativeResponses.length)];
+      } else if (lowerMessage.includes('ai') || lowerMessage.includes('artificiële intelligentie') || lowerMessage.includes('machine learning')) {
+        response = aiResponses[Math.floor(Math.random() * aiResponses.length)];
       } else if (lowerMessage.includes('kosten') || lowerMessage.includes('prijs') || lowerMessage.includes('tarief') || lowerMessage.includes('budget')) {
-        response = 'AI-projecten variëren van €5.000 voor eenvoudige automatisering tot €50.000+ voor complexe systemen. We starten altijd met een gratis strategiegesprek om uw situatie te analyseren en een transparante offerte te maken. Zo weet u precies wat de investering en het ROI zijn.';
+        response = costResponses[Math.floor(Math.random() * costResponses.length)];
       } else if (lowerMessage.includes('tijd') || lowerMessage.includes('duur') || lowerMessage.includes('implementatie') || lowerMessage.includes('lang')) {
-        response = 'Een AI-project duurt typisch 2-6 maanden. We beginnen met een Proof of Concept van 2-4 weken om snel tastbare resultaten te tonen. Dit geeft u vertrouwen in onze aanpak voordat we de volledige implementatie starten. Snelle wins zijn mogelijk!';
+        response = timeResponses[Math.floor(Math.random() * timeResponses.length)];
       } else if (lowerMessage.includes('ervaring') || lowerMessage.includes('referenties') || lowerMessage.includes('cases') || lowerMessage.includes('klanten')) {
-        response = 'IndyctAI heeft 50+ bedrijven geholpen met AI-transformatie! Van e-commerce automatisering tot predictive maintenance in manufacturing. We hebben ervaring in retail, logistiek, finance, healthcare en meer. Tijdens een strategiegesprek delen we relevante cases uit uw sector.';
-      } else if (lowerMessage.includes('chatbot') || lowerMessage.includes('klantenservice') || lowerMessage.includes('automatisering')) {
-        response = 'Chatbots kunnen 80% van klantvragen automatisch beantwoorden, 24/7 beschikbaar zijn en leads kwalificeren. We bouwen intelligente chatbots die echt begrijpen wat klanten vragen en naadloos integreren met uw systemen. Wilt u zien hoe een chatbot uw klantenservice kan verbeteren?';
+        response = experienceResponses[Math.floor(Math.random() * experienceResponses.length)];
+      } else if (lowerMessage.includes('chatbot') || lowerMessage.includes('klantenservice')) {
+        response = 'Chatbots zijn onze specialiteit! Ze beantwoorden 80% van klantvragen automatisch, werken 24/7 en kwalificeren leads terwijl u slaapt. We bouwen intelligente chatbots die echt begrijpen wat klanten vragen. Wilt u zien hoe dit uw klantenservice kan revolutioneren?';
       } else if (lowerMessage.includes('data') || lowerMessage.includes('analyse') || lowerMessage.includes('inzichten')) {
-        response = 'Data is de brandstof van AI! We helpen u waardevolle inzichten te halen uit uw data met machine learning, predictive analytics en business intelligence. Van klantsegmentatie tot voorspelling van trends - we maken uw data actionable. Heeft u veel data maar weinig inzichten?';
+        response = 'Data is goud waard als je weet hoe je het moet gebruiken! We transformeren uw data in actionable insights met machine learning en predictive analytics. Van klantsegmentatie tot trendvoorspelling - we maken uw data winstgevend.';
+      } else if (lowerMessage.includes('automatisering') || lowerMessage.includes('proces')) {
+        response = 'Procesautomatisering is waar AI echt schittert! Denk aan automatische factuurverwerking, slimme planning of voorspellend onderhoud. We identificeren welke processen het meeste baat hebben bij automatisering.';
+      } else if (lowerMessage.includes('website') || lowerMessage.includes('webshop') || lowerMessage.includes('online')) {
+        response = 'Online aanwezigheid is cruciaal! AI kan uw website slimmer maken met gepersonaliseerde aanbevelingen, chatbots voor klantenservice en automatische content optimalisatie. Hoe kunnen we uw online ervaring verbeteren?';
+      } else if (lowerMessage.includes('verkoop') || lowerMessage.includes('sales') || lowerMessage.includes('omzet')) {
+        response = 'AI kan uw verkoop flink boosten! Denk aan lead scoring, gepersonaliseerde aanbevelingen en voorspellende analyses voor betere conversies. We helpen u slimmer verkopen met data-gedreven inzichten.';
+      } else if (lowerMessage.includes('klant') || lowerMessage.includes('customer') || lowerMessage.includes('service')) {
+        response = 'Klanttevredenheid is key! AI verbetert uw klantenservice met 24/7 chatbots, sentiment analyse en gepersonaliseerde ervaringen. Tevreden klanten betekenen meer omzet en loyaliteit.';
+      } else if (lowerMessage.includes('concurrentie') || lowerMessage.includes('concurrent') || lowerMessage.includes('markt')) {
+        response = 'AI geeft u een concurrentievoordeel! Terwijl anderen nog handmatig werken, automatiseert u processen en krijgt u betere inzichten. We helpen u voorop te lopen in uw markt.';
+      } else if (lowerMessage.includes('toekomst') || lowerMessage.includes('innovatie') || lowerMessage.includes('technologie')) {
+        response = 'De toekomst is AI! Bedrijven die nu investeren in AI-technologie, lopen straks voorop. IndyctAI bereidt u voor op de digitale toekomst met praktische, winstgevende AI-oplossingen.';
+      } else {
+        // Use random general response to avoid repetition
+        response = generalResponses[Math.floor(Math.random() * generalResponses.length)];
       }
 
-      // Remove typing indicator and add fallback response
+      // Remove typing indicator and add diverse response
       setChatMessages(prev => {
         const newMessages = [...prev];
         newMessages[newMessages.length - 1] = { type: 'bot', message: response };
