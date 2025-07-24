@@ -72,19 +72,69 @@ Geef altijd behulpzame, professionele antwoorden in het Nederlands. Houd antwoor
   } catch (error) {
     console.error('Chat function error:', error);
     
-    // Intelligent fallback responses
+    // Much better diverse fallback responses
     const { message } = JSON.parse(event.body);
     const lowerMessage = message.toLowerCase();
-    let fallbackResponse = 'Ik begrijp uw interesse in AI! Voor een persoonlijk advies over hoe AI uw bedrijf kan transformeren, plan dan een gratis strategiegesprek in via ons contactformulier. Onze experts bespreken graag de mogelijkheden met u.';
     
-    if (lowerMessage.includes('ai') || lowerMessage.includes('artificiële intelligentie')) {
-      fallbackResponse = 'AI kan uw bedrijf revolutioneren door processen te automatiseren, betere inzichten uit data te halen en slimmere beslissingen mogelijk te maken. IndyctAI helpt u een AI-strategie te ontwikkelen die perfect past bij uw doelen. Wilt u een gratis strategiegesprek inplannen?';
-    } else if (lowerMessage.includes('kosten') || lowerMessage.includes('prijs') || lowerMessage.includes('tarief')) {
-      fallbackResponse = 'AI-projecten variëren sterk in kosten, afhankelijk van complexiteit en scope. We starten altijd met een gratis strategiegesprek om uw situatie te analyseren en een transparante offerte te maken. Zo weet u precies wat de investering en het verwachte rendement zijn.';
-    } else if (lowerMessage.includes('tijd') || lowerMessage.includes('duur') || lowerMessage.includes('implementatie')) {
-      fallbackResponse = 'Een AI-project duurt typisch 2-6 maanden. We beginnen altijd met een Proof of Concept van 2-4 weken om snel resultaat te tonen. Dit geeft u vertrouwen in de aanpak voordat we de volledige implementatie starten.';
-    } else if (lowerMessage.includes('ervaring') || lowerMessage.includes('referenties') || lowerMessage.includes('cases')) {
-      fallbackResponse = 'IndyctAI heeft 50+ bedrijven geholpen met AI-transformatie, van startups tot grote ondernemingen. We hebben ervaring in retail, logistiek, finance en meer. Tijdens een strategiegesprek kunnen we relevante cases delen die passen bij uw sector.';
+    // Arrays of diverse responses for each category
+    const generalResponses = [
+      'Interessante vraag! AI biedt enorme mogelijkheden voor bedrijven. Laten we eens kijken hoe we uw specifieke uitdaging kunnen aanpakken.',
+      'Dat is precies waar IndyctAI u mee kan helpen! We maken AI toegankelijk en praktisch toepasbaar voor uw bedrijf.',
+      'Geweldige vraag! AI kan uw bedrijfsprocessen echt transformeren. Wilt u weten hoe we dat voor u kunnen realiseren?',
+      'Daar hebben we veel ervaring mee! Laat me u vertellen hoe IndyctAI dit soort uitdagingen aanpakt.',
+      'Perfect timing voor deze vraag! AI ontwikkelt zich snel en we helpen bedrijven om hiervan te profiteren.'
+    ];
+
+    const aiResponses = [
+      'AI revolutioneert bedrijven door slimme automatisering! Van chatbots die 24/7 klanten helpen tot algoritmes die voorspellen wat klanten willen. IndyctAI maakt deze technologie toegankelijk voor uw bedrijf.',
+      'Artificiële Intelligentie is als een digitale expert die nooit moe wordt! Het analyseert patronen, automatiseert taken en geeft inzichten die mensen over het hoofd zien.',
+      'AI betekent slimmere beslissingen, snellere processen en tevreden klanten! Denk aan automatische klantenservice, voorspellende analyses of slimme aanbevelingen.',
+      'Machine Learning kan uw data laten "praten"! Het ontdekt verborgen patronen, voorspelt trends en optimaliseert processen. IndyctAI heeft al 50+ bedrijven geholpen hun data te monetiseren.'
+    ];
+
+    const costResponses = [
+      'AI-investeringen variëren enorm! Een simpele chatbot start rond €5.000, terwijl complexe machine learning systemen €50.000+ kunnen kosten. We starten altijd met een gratis strategieanalyse.',
+      'Slimme vraag over kosten! De meeste AI-projecten betalen zichzelf terug binnen 6-18 maanden door efficiëntiewinst. We maken transparante offertes gebaseerd op verwachte ROI.',
+      'Budget is belangrijk bij AI! We werken met verschillende prijsmodellen: van €5.000 voor automatisering tot €25.000+ voor custom ML-oplossingen.',
+      'AI-kosten hangen af van complexiteit en scope. Een chatbot kost anders dan predictive analytics! We bieden altijd eerst een gratis strategiegesprek.'
+    ];
+
+    const timeResponses = [
+      'Snelheid is cruciaal! We starten met een 2-4 weken Proof of Concept om snel resultaat te tonen. Volledige implementatie duurt 2-6 maanden, afhankelijk van complexiteit.',
+      'Tijdlijn hangt af van uw ambities! Eenvoudige automatisering kan binnen 4-8 weken live zijn, complexe AI-systemen duren 3-6 maanden.',
+      'Geduld loont bij AI! Een gedegen implementatie duurt 2-6 maanden, maar we zorgen voor tastbare resultaten binnen de eerste maand.',
+      'Implementatietijd varieert per project! Chatbots zijn snel (4-6 weken), machine learning duurt langer (3-6 maanden).'
+    ];
+
+    let fallbackResponse = '';
+    
+    // Intelligent keyword matching with random diverse responses
+    if (lowerMessage.includes('hallo') || lowerMessage.includes('hoi') || lowerMessage.includes('dag') || lowerMessage.includes('hey')) {
+      const greetings = [
+        'Hallo! Wat fijn dat u IndyctAI bezoekt! Ik ben hier om al uw vragen over AI en onze diensten te beantwoorden.',
+        'Hoi daar! Leuk u te ontmoeten! Ik ben de IndyctAI assistent en help graag met vragen over kunstmatige intelligentie.',
+        'Goedendag! Welkom bij IndyctAI! Ik sta klaar om u te helpen met alles over AI en automatisering.'
+      ];
+      fallbackResponse = greetings[Math.floor(Math.random() * greetings.length)];
+    } else if (lowerMessage.includes('ai') || lowerMessage.includes('artificiële intelligentie') || lowerMessage.includes('machine learning')) {
+      fallbackResponse = aiResponses[Math.floor(Math.random() * aiResponses.length)];
+    } else if (lowerMessage.includes('kosten') || lowerMessage.includes('prijs') || lowerMessage.includes('tarief') || lowerMessage.includes('budget')) {
+      fallbackResponse = costResponses[Math.floor(Math.random() * costResponses.length)];
+    } else if (lowerMessage.includes('tijd') || lowerMessage.includes('duur') || lowerMessage.includes('implementatie') || lowerMessage.includes('lang')) {
+      fallbackResponse = timeResponses[Math.floor(Math.random() * timeResponses.length)];
+    } else if (lowerMessage.includes('ervaring') || lowerMessage.includes('referenties') || lowerMessage.includes('cases') || lowerMessage.includes('klanten')) {
+      fallbackResponse = 'IndyctAI heeft 50+ bedrijven geholpen met AI-transformatie! Van e-commerce automatisering tot predictive maintenance. We hebben ervaring in retail, logistiek, finance, healthcare en meer.';
+    } else if (lowerMessage.includes('chatbot') || lowerMessage.includes('klantenservice')) {
+      fallbackResponse = 'Chatbots zijn onze specialiteit! Ze beantwoorden 80% van klantvragen automatisch, werken 24/7 en kwalificeren leads terwijl u slaapt. Wilt u zien hoe dit uw klantenservice kan revolutioneren?';
+    } else if (lowerMessage.includes('data') || lowerMessage.includes('analyse') || lowerMessage.includes('inzichten')) {
+      fallbackResponse = 'Data is goud waard als je weet hoe je het moet gebruiken! We transformeren uw data in actionable insights met machine learning en predictive analytics.';
+    } else if (lowerMessage.includes('help') || lowerMessage.includes('hulp') || lowerMessage.includes('kunnen jullie')) {
+      fallbackResponse = 'Natuurlijk help ik u graag! IndyctAI is er om AI toegankelijk te maken voor elk bedrijf. Of het nu gaat om automatisering, data-analyse of slimme chatbots - we hebben de expertise.';
+    } else if (lowerMessage.includes('hoe gaat het') || lowerMessage.includes('alles goed')) {
+      fallbackResponse = 'Met mij gaat het uitstekend, dank je! Ik ben altijd enthousiast om over AI te praten. En met u? Hoe kan IndyctAI uw dag beter maken?';
+    } else {
+      // Use random general response to avoid repetition
+      fallbackResponse = generalResponses[Math.floor(Math.random() * generalResponses.length)];
     }
 
     return {
