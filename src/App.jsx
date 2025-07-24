@@ -104,37 +104,87 @@ function App() {
     }
   };
 
-  // Chatbot logic
-  const chatbotResponses = {
-    'wat is ai': 'Artificiële Intelligentie (AI) is technologie die computers in staat stelt om taken uit te voeren die normaal menselijke intelligentie vereisen, zoals leren, redeneren en probleemoplossing.',
-    'kosten': 'De kosten van AI-implementatie variëren sterk afhankelijk van uw specifieke behoeften. We bieden een gratis strategiegesprek aan om uw situatie te bespreken en een op maat gemaakte offerte te maken.',
-    'voordelen': 'AI kan uw bedrijf helpen met: 40% efficiëntiewinst, geautomatiseerde processen, betere besluitvorming, kostenbesparingen en concurrentievoordeel.',
-    'implementatie': 'Onze AI-implementatie bestaat uit 4 fasen: 1) Strategieanalyse, 2) Proof of Concept, 3) Ontwikkeling & Integratie, 4) Training & Ondersteuning.',
-    'contact': 'U kunt contact met ons opnemen via het contactformulier, e-mail (indyctai@gmail.com) of telefoon (+31 6 20 70 92 56). We reageren binnen 24 uur!',
-    'diensten': 'Wij bieden: AI Strategie & Advies, Machine Learning Oplossingen, Procesautomatisering, Data Analytics & Insights, en AI Training & Workshops.',
-    'ervaring': 'IndyctAI heeft uitgebreide ervaring met AI-implementaties in verschillende sectoren. We hebben al meer dan 50 bedrijven geholpen met hun AI-transformatie.',
-    'tijd': 'De implementatietijd varieert van 2-6 maanden, afhankelijk van de complexiteit van uw project. We starten altijd met een Proof of Concept van 2-4 weken.'
-  };
-
-  const handleChatbotMessage = (userMessage) => {
+  // Chatbot logic with OpenAI API
+  const handleChatbotMessage = async (userMessage) => {
     // Add user message
     setChatMessages(prev => [...prev, { type: 'user', message: userMessage }]);
     
-    // Find response
-    const lowerMessage = userMessage.toLowerCase();
-    let response = 'Dat is een interessante vraag! Voor specifieke informatie over uw situatie raad ik aan om contact op te nemen via ons contactformulier. Onze experts kunnen u persoonlijk adviseren.';
+    // Add typing indicator
+    setChatMessages(prev => [...prev, { type: 'bot', message: '...' }]);
     
-    for (const [key, value] of Object.entries(chatbotResponses)) {
-      if (lowerMessage.includes(key)) {
-        response = value;
-        break;
+    try {
+      const response = await fetch('https://api.openai.com/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${import.meta.env.VITE_OPENAI_API_KEY || 'sk-proj-your-key-here'}`
+        },
+        body: JSON.stringify({
+          model: 'gpt-3.5-turbo',
+          messages: [
+            {
+              role: 'system',
+              content: `Je bent een AI-assistent voor IndyctAI, een Nederlands AI-consultancy bedrijf. Je helpt bezoekers met vragen over AI, machine learning, en hoe IndyctAI hun bedrijf kan helpen. 
+
+Belangrijke informatie over IndyctAI:
+- Gespecialiseerd in AI-strategie, machine learning oplossingen, procesautomatisering
+- Biedt gratis strategiegesprekken aan
+- Heeft ervaring met 50+ bedrijven
+- Implementatietijd: 2-6 maanden, start met Proof of Concept
+- Contact: indyctai@gmail.com, +31 6 20 70 92 56
+- Locatie: Utrecht, Nederland
+
+Geef altijd behulpzame, professionele antwoorden in het Nederlands. Als iemand interesse toont, verwijs dan naar het contactformulier of een gratis strategiegesprek.`
+            },
+            {
+              role: 'user',
+              content: userMessage
+            }
+          ],
+          max_tokens: 200,
+          temperature: 0.7
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error('API request failed');
       }
+
+      const data = await response.json();
+      const aiResponse = data.choices[0].message.content;
+
+      // Remove typing indicator and add real response
+      setChatMessages(prev => {
+        const newMessages = [...prev];
+        newMessages[newMessages.length - 1] = { type: 'bot', message: aiResponse };
+        return newMessages;
+      });
+
+    } catch (error) {
+      console.error('OpenAI API Error:', error);
+      
+      // Fallback to intelligent predefined responses
+      const lowerMessage = userMessage.toLowerCase();
+      let response = 'Ik begrijp uw vraag. Voor een gedetailleerd antwoord op uw specifieke situatie, raad ik aan om een gratis strategiegesprek in te plannen via ons contactformulier. Onze AI-experts kunnen u dan persoonlijk adviseren over de beste aanpak voor uw bedrijf.';
+      
+      // Intelligent keyword matching
+      if (lowerMessage.includes('ai') || lowerMessage.includes('artificiële intelligentie')) {
+        response = 'Artificiële Intelligentie kan uw bedrijf transformeren door processen te automatiseren, betere besluitvorming mogelijk te maken en nieuwe inzichten te genereren uit uw data. IndyctAI helpt bedrijven bij het ontwikkelen van een AI-strategie die past bij hun specifieke doelen. Wilt u meer weten over hoe AI uw bedrijf kan helpen?';
+      } else if (lowerMessage.includes('kosten') || lowerMessage.includes('prijs') || lowerMessage.includes('tarief')) {
+        response = 'De kosten voor AI-implementatie variëren sterk per project en bedrijf. We bieden altijd eerst een gratis strategiegesprek aan om uw situatie te analyseren en een op maat gemaakte offerte te maken. Zo krijgt u een eerlijk beeld van de investering en het verwachte rendement.';
+      } else if (lowerMessage.includes('tijd') || lowerMessage.includes('duur') || lowerMessage.includes('lang')) {
+        response = 'Een typisch AI-project duurt 2-6 maanden, afhankelijk van de complexiteit. We starten altijd met een Proof of Concept van 2-4 weken om de haalbaarheid te testen. Dit geeft u snel inzicht in de mogelijkheden zonder grote investering vooraf.';
+      } else if (lowerMessage.includes('ervaring') || lowerMessage.includes('referenties') || lowerMessage.includes('klanten')) {
+        response = 'IndyctAI heeft al meer dan 50 bedrijven geholpen met hun AI-transformatie, van startups tot grote ondernemingen. We hebben ervaring in verschillende sectoren en kunnen u referenties tonen van vergelijkbare projecten tijdens een strategiegesprek.';
+      }
+
+      // Remove typing indicator and add fallback response
+      setChatMessages(prev => {
+        const newMessages = [...prev];
+        newMessages[newMessages.length - 1] = { type: 'bot', message: response };
+        return newMessages;
+      });
     }
-    
-    // Add bot response with delay
-    setTimeout(() => {
-      setChatMessages(prev => [...prev, { type: 'bot', message: response }]);
-    }, 1000);
   };
 
   const quickQuestions = [
