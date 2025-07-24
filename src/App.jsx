@@ -104,7 +104,7 @@ function App() {
     }
   };
 
-  // Chatbot logic with OpenAI API
+  // Chatbot logic with Netlify function
   const handleChatbotMessage = async (userMessage) => {
     // Add user message
     setChatMessages(prev => [...prev, { type: 'user', message: userMessage }]);
@@ -113,45 +113,22 @@ function App() {
     setChatMessages(prev => [...prev, { type: 'bot', message: '...' }]);
     
     try {
-      const response = await fetch('https://api.openai.com/v1/chat/completions', {
+      const response = await fetch('/.netlify/functions/chat', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${import.meta.env.VITE_OPENAI_API_KEY || 'sk-proj-your-key-here'}`
         },
         body: JSON.stringify({
-          model: 'gpt-3.5-turbo',
-          messages: [
-            {
-              role: 'system',
-              content: `Je bent een AI-assistent voor IndyctAI, een Nederlands AI-consultancy bedrijf. Je helpt bezoekers met vragen over AI, machine learning, en hoe IndyctAI hun bedrijf kan helpen. 
-
-Belangrijke informatie over IndyctAI:
-- Gespecialiseerd in AI-strategie, machine learning oplossingen, procesautomatisering
-- Biedt gratis strategiegesprekken aan
-- Heeft ervaring met 50+ bedrijven
-- Implementatietijd: 2-6 maanden, start met Proof of Concept
-- Contact: indyctai@gmail.com, +31 6 20 70 92 56
-- Locatie: Utrecht, Nederland
-
-Geef altijd behulpzame, professionele antwoorden in het Nederlands. Als iemand interesse toont, verwijs dan naar het contactformulier of een gratis strategiegesprek.`
-            },
-            {
-              role: 'user',
-              content: userMessage
-            }
-          ],
-          max_tokens: 200,
-          temperature: 0.7
+          message: userMessage
         })
       });
 
       if (!response.ok) {
-        throw new Error('API request failed');
+        throw new Error('Network response was not ok');
       }
 
       const data = await response.json();
-      const aiResponse = data.choices[0].message.content;
+      const aiResponse = data.response;
 
       // Remove typing indicator and add real response
       setChatMessages(prev => {
@@ -161,21 +138,25 @@ Geef altijd behulpzame, professionele antwoorden in het Nederlands. Als iemand i
       });
 
     } catch (error) {
-      console.error('OpenAI API Error:', error);
+      console.error('Chat API Error:', error);
       
-      // Fallback to intelligent predefined responses
+      // Enhanced fallback responses
       const lowerMessage = userMessage.toLowerCase();
-      let response = 'Ik begrijp uw vraag. Voor een gedetailleerd antwoord op uw specifieke situatie, raad ik aan om een gratis strategiegesprek in te plannen via ons contactformulier. Onze AI-experts kunnen u dan persoonlijk adviseren over de beste aanpak voor uw bedrijf.';
+      let response = 'Ik begrijp uw interesse in AI! Voor een persoonlijk advies over hoe AI uw bedrijf kan transformeren, plan dan een gratis strategiegesprek in via ons contactformulier. Onze experts bespreken graag de mogelijkheden met u.';
       
-      // Intelligent keyword matching
-      if (lowerMessage.includes('ai') || lowerMessage.includes('artificiële intelligentie')) {
-        response = 'Artificiële Intelligentie kan uw bedrijf transformeren door processen te automatiseren, betere besluitvorming mogelijk te maken en nieuwe inzichten te genereren uit uw data. IndyctAI helpt bedrijven bij het ontwikkelen van een AI-strategie die past bij hun specifieke doelen. Wilt u meer weten over hoe AI uw bedrijf kan helpen?';
-      } else if (lowerMessage.includes('kosten') || lowerMessage.includes('prijs') || lowerMessage.includes('tarief')) {
-        response = 'De kosten voor AI-implementatie variëren sterk per project en bedrijf. We bieden altijd eerst een gratis strategiegesprek aan om uw situatie te analyseren en een op maat gemaakte offerte te maken. Zo krijgt u een eerlijk beeld van de investering en het verwachte rendement.';
-      } else if (lowerMessage.includes('tijd') || lowerMessage.includes('duur') || lowerMessage.includes('lang')) {
-        response = 'Een typisch AI-project duurt 2-6 maanden, afhankelijk van de complexiteit. We starten altijd met een Proof of Concept van 2-4 weken om de haalbaarheid te testen. Dit geeft u snel inzicht in de mogelijkheden zonder grote investering vooraf.';
-      } else if (lowerMessage.includes('ervaring') || lowerMessage.includes('referenties') || lowerMessage.includes('klanten')) {
-        response = 'IndyctAI heeft al meer dan 50 bedrijven geholpen met hun AI-transformatie, van startups tot grote ondernemingen. We hebben ervaring in verschillende sectoren en kunnen u referenties tonen van vergelijkbare projecten tijdens een strategiegesprek.';
+      // Intelligent keyword matching with better responses
+      if (lowerMessage.includes('ai') || lowerMessage.includes('artificiële intelligentie') || lowerMessage.includes('machine learning')) {
+        response = 'AI kan uw bedrijf revolutioneren! Het automatiseert processen, genereert inzichten uit data en verbetert besluitvorming. IndyctAI ontwikkelt AI-strategieën die perfect passen bij uw doelen. Van chatbots tot predictive analytics - we maken AI toegankelijk voor uw bedrijf. Wilt u een gratis strategiegesprek?';
+      } else if (lowerMessage.includes('kosten') || lowerMessage.includes('prijs') || lowerMessage.includes('tarief') || lowerMessage.includes('budget')) {
+        response = 'AI-projecten variëren van €5.000 voor eenvoudige automatisering tot €50.000+ voor complexe systemen. We starten altijd met een gratis strategiegesprek om uw situatie te analyseren en een transparante offerte te maken. Zo weet u precies wat de investering en het ROI zijn.';
+      } else if (lowerMessage.includes('tijd') || lowerMessage.includes('duur') || lowerMessage.includes('implementatie') || lowerMessage.includes('lang')) {
+        response = 'Een AI-project duurt typisch 2-6 maanden. We beginnen met een Proof of Concept van 2-4 weken om snel tastbare resultaten te tonen. Dit geeft u vertrouwen in onze aanpak voordat we de volledige implementatie starten. Snelle wins zijn mogelijk!';
+      } else if (lowerMessage.includes('ervaring') || lowerMessage.includes('referenties') || lowerMessage.includes('cases') || lowerMessage.includes('klanten')) {
+        response = 'IndyctAI heeft 50+ bedrijven geholpen met AI-transformatie! Van e-commerce automatisering tot predictive maintenance in manufacturing. We hebben ervaring in retail, logistiek, finance, healthcare en meer. Tijdens een strategiegesprek delen we relevante cases uit uw sector.';
+      } else if (lowerMessage.includes('chatbot') || lowerMessage.includes('klantenservice') || lowerMessage.includes('automatisering')) {
+        response = 'Chatbots kunnen 80% van klantvragen automatisch beantwoorden, 24/7 beschikbaar zijn en leads kwalificeren. We bouwen intelligente chatbots die echt begrijpen wat klanten vragen en naadloos integreren met uw systemen. Wilt u zien hoe een chatbot uw klantenservice kan verbeteren?';
+      } else if (lowerMessage.includes('data') || lowerMessage.includes('analyse') || lowerMessage.includes('inzichten')) {
+        response = 'Data is de brandstof van AI! We helpen u waardevolle inzichten te halen uit uw data met machine learning, predictive analytics en business intelligence. Van klantsegmentatie tot voorspelling van trends - we maken uw data actionable. Heeft u veel data maar weinig inzichten?';
       }
 
       // Remove typing indicator and add fallback response
