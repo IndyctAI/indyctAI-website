@@ -52,6 +52,7 @@ import { Textarea } from "./components/ui/textarea";
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isContactOpen, setIsContactOpen] = useState(false);
+  const [isContactFormOpen, setIsContactFormOpen] = useState(false);
   const [contactType, setContactType] = useState('personal');
   const { scrollYProgress } = useScroll();
   const y = useTransform(scrollYProgress, [0, 1], ['0%', '50%']);
