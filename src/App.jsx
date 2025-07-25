@@ -216,12 +216,21 @@ function App() {
           style={{ y }}
           className="absolute inset-0 z-0"
         >
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 to-purple-600/20" />
-          <img
-            src={newAiBackground}
-            alt="AI Background"
-            className="w-full h-full object-cover opacity-30"
-          />
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-600/30 to-purple-600/30" />
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="w-full h-full object-cover opacity-40"
+          >
+            <source src="/hero-background.mp4" type="video/mp4" />
+            <img
+              src={newAiBackground}
+              alt="AI Background"
+              className="w-full h-full object-cover opacity-30"
+            />
+          </video>
         </motion.div>
         
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
