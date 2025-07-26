@@ -112,8 +112,8 @@ function App() {
     {
       icon: <Brain className="w-8 h-8" />,
       title: "AI Strategie & Advies",
-      description: "Ontwikkel een heldere AI-strategie die direct leidt tot meetbare verbeteringen in uw bedrijfsprestaties.",
-      features: ["Verhoogde ROI", "Operationele efficiëntie", "Concurrentievoordeel"]
+      description: "Ontwikkel een heldere AI-strategie inclusief implementatieplan, systeemintegratie en adoptie-roadmap die direct leidt tot meetbare verbeteringen in uw bedrijfsprestaties.",
+      features: ["Strategische roadmap", "Systeemintegratie", "Adoptie-begeleiding"]
     },
     {
       icon: <Zap className="w-8 h-8" />,
@@ -232,14 +232,14 @@ function App() {
             transition={{ duration: 0.8 }}
           >
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6">
-              Transformeer Uw Bedrijf met
+              Verhoog Uw Winst met
               <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
-                Meetbare AI Resultaten
+                Direct Meetbare AI
               </span>
             </h1>
             <p className="text-xl md:text-2xl text-slate-300 mb-8 max-w-3xl mx-auto">
-              IndyctAI levert op maat gemaakte AI-oplossingen die uw efficiëntie verhogen, kosten verlagen en groei versnellen. 
-              Bereik concrete resultaten met onze bewezen expertise.
+              IndyctAI transformeert uw bedrijfsprocessen met op maat gemaakte AI-oplossingen die aantoonbaar leiden tot 
+              gemiddeld 30% kostenbesparing en 2x snellere operationele efficiëntie.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <motion.div
@@ -296,7 +296,7 @@ function App() {
                         repeatDelay: 1
                       }}
                     >
-                      Gratis AI-Quickscan
+                      Plan jouw gratis AI Quickscan nu – binnen 24 uur contact
                     </motion.span>
                     
                     {/* Animated arrow with trail effect */}
@@ -389,7 +389,7 @@ function App() {
                             repeatDelay: 1.5
                           }}
                         >
-                          Ontvang in 14 dagen een op maat gemaakte AI-oplossing
+                          Start vandaag – ontvang binnen 14 dagen uw AI-oplossing
                         </motion.span>
                         
                         {/* Animated mail icon with pulse effect */}
@@ -684,8 +684,8 @@ function App() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
-              Geen standaard AI-tools, maar volledig op maat gemaakte oplossingen die perfect aansluiten bij uw bedrijf. 
-              IndyctAI levert strategische begeleiding en technische expertise voor duurzame AI-transformatie.
+              Van AI-strategie en systeemintegratie tot teamtraining en adoptie-begeleiding. IndyctAI levert niet alleen 
+              technologie, maar ook de expertise om uw organisatie succesvol te transformeren naar een AI-gedreven bedrijf.
             </motion.p>
           </motion.div>
 
@@ -767,15 +767,16 @@ function App() {
                 Wij zijn geen leverancier van kant-en-klare tools, maar uw strategische partner in AI-transformatie.
               </p>
               <p className="text-lg text-slate-300 mb-6">
-                Onze aanpak gaat verder dan implementatie. We analyseren uw unieke bedrijfsuitdagingen, ontwerpen 
-                gepersonaliseerde AI-architecturen en begeleiden u door elke stap van de transformatie. Van strategische 
-                planning tot technische implementatie en continue optimalisatie - IndyctAI zorgt ervoor dat AI niet alleen 
-                werkt, maar ook evolueert met uw bedrijf.
+                Onze aanpak gaat verder dan implementatie. We begeleiden uw organisatie door de volledige AI-adoptie cyclus: 
+                van strategische planning en systeemintegratie tot teamtraining en change management. IndyctAI zorgt ervoor 
+                dat uw medewerkers de nieuwe AI-tools effectief kunnen gebruiken en dat uw bedrijf maximaal profiteert van 
+                de technologische investering.
               </p>
               <p className="text-lg text-slate-300 mb-8">
-                Met IndyctAI krijgt u directe toegang tot diepgaande AI-expertise zonder de overhead van grote consultancybureaus. 
-                Onze focus ligt op het leveren van meetbare resultaten die uw concurrentiepositie versterken en uw bedrijf 
-                toekomstbestendig maken in een snel veranderende digitale wereld.
+                Als uw toekomstbestendige AI-partner ontwikkelen we niet alleen de technologie, maar ook de strategie voor 
+                langetermijn succes. Van initiële implementatie tot continue optimalisatie en schaalbaarheid - IndyctAI 
+                zorgt ervoor dat uw AI-oplossingen meegroeien met uw bedrijf en blijven presteren in een snel veranderende 
+                digitale wereld.
               </p>
             </motion.div>
             
@@ -1041,7 +1042,7 @@ export default App;
                       size="lg" 
                       className="bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white px-8 py-3"
                     >
-                      Plan Gratis AI-Quickscan
+                      Plan jouw gratis AI Quickscan nu – binnen 24 uur contact
                     </Button>
                   </motion.div>
                 </DialogTrigger>
@@ -1114,3 +1115,66 @@ export default App;
       </section>
 
       {/* Case Study/Demo Section */}
+
+
+      {/* Another Case Study/Demo Section */}
+      <section className="py-20 bg-slate-800/30">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              className="relative"
+            >
+              <img
+                src={futuristicAi2}
+                alt="Case Study AI 2"
+                className="rounded-lg shadow-2xl w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-green-600/20 to-teal-600/20 rounded-lg" />
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+            >
+              <Card className="bg-slate-800/50 border-slate-700">
+                <CardHeader>
+                  <CardTitle className="text-white text-2xl">Case Study: 40% Tijdsbesparing bij Klantenservice</CardTitle>
+                  <CardDescription className="text-slate-300">
+                    Implementatie van een AI-gestuurde chatbot voor klantenservice.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-6">
+                  <p className="text-slate-300">
+                    Een middelgroot bedrijf had moeite met de hoge werkdruk op hun klantenserviceafdeling, wat resulteerde in lange wachttijden en lagere klanttevredenheid. IndyctAI ontwikkelde en implementeerde een intelligente AI-chatbot die de meest voorkomende vragen zelfstandig afhandelt.
+                  </p>
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-2">
+                      <CheckCircle className="w-4 h-4 text-green-400" />
+                      <span className="text-slate-300">40% tijdsbesparing op klantenservice</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <CheckCircle className="w-4 h-4 text-green-400" />
+                      <span className="text-slate-300">24/7 beschikbaarheid voor klanten</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <CheckCircle className="w-4 h-4 text-green-400" />
+                      <span className="text-slate-300">Verbeterde klanttevredenheid met 20%</span>
+                    </div>
+                  </div>
+                  <blockquote className="text-slate-400 italic border-l-4 border-green-500 pl-4">
+                    "De chatbot van IndyctAI heeft onze klantenservice revolutionair veranderd. Onze medewerkers kunnen zich nu richten op complexere vraagstukken, en onze klanten krijgen direct antwoord. Een absolute game-changer!"
+                    <footer className="mt-2 text-white">— Mark de Vries, Manager Klantenservice</footer>
+                  </blockquote>
+                </CardContent>
+              </Card>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+
+
