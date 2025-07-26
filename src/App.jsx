@@ -112,35 +112,35 @@ function App() {
     {
       icon: <Brain className="w-8 h-8" />,
       title: "AI Strategie & Advies",
-      description: "Ontwikkel een heldere AI-strategie die perfect aansluit bij uw bedrijfsdoelstellingen en ambities.",
-      features: ["Strategische roadmap", "ROI analyse", "Implementatieplan"]
+      description: "Ontwikkel een heldere AI-strategie die direct leidt tot meetbare verbeteringen in uw bedrijfsprestaties.",
+      features: ["Verhoogde ROI", "Operationele efficiëntie", "Concurrentievoordeel"]
     },
     {
       icon: <Zap className="w-8 h-8" />,
       title: "Machine Learning Ontwikkeling",
-      description: "Geavanceerde ML-modellen voor voorspellende analyses, NLP en computer vision toepassingen.",
-      features: ["Voorspellende modellen", "NLP systemen", "Computer vision"]
+      description: "Implementeer geavanceerde ML-modellen die de nauwkeurigheid van voorspellingen met 25% verbeteren en handmatige taken met 50% verminderen.",
+      features: ["25% betere voorspellingen", "50% minder handmatige taken", "Snellere besluitvorming"]
     },
     {
       icon: <Target className="w-8 h-8" />,
       title: "AI-gestuurde Automatisering",
-      description: "Optimaliseer uw bedrijfsprocessen door intelligente automatisering van repetitieve taken.",
-      features: ["Proces automatisering", "Workflow optimalisatie", "Efficiëntie verbetering"]
+      description: "Automatiseer repetitieve processen en realiseer een kostenbesparing van gemiddeld 30% binnen zes maanden.",
+      features: ["30% kostenbesparing", "2x snellere processen", "Foutreductie tot 90%"]
     },
     {
       icon: <Users className="w-8 h-8" />,
       title: "Data Wetenschap & Analyse",
-      description: "Transformeer uw data in waardevolle inzichten met geavanceerde data science technieken.",
-      features: ["Data analyse", "Visualisatie", "Inzicht generatie"]
+      description: "Transformeer ruwe data in bruikbare inzichten die leiden tot 15% hogere omzet en geoptimaliseerde marketingcampagnes.",
+      features: ["15% omzetgroei", "Gerichte marketing", "Diepgaande klantinzichten"]
     }
   ];
 
   // Stats data
   const stats = [
-    { number: "40%", label: "Efficiëntie Verbetering" },
-    { number: "30%", label: "Kostenbesparing" },
-    { number: "10x", label: "Snellere Output" },
-    { number: "100%", label: "Tevreden Klanten" }
+    { number: "30%+", label: "Kostenbesparing" },
+    { number: "2x", label: "Snellere Processen" },
+    { number: "90%", label: "Foutreductie" },
+    { number: "100%", label: "Tevredenheid" }
   ];
 
   return (
@@ -232,14 +232,14 @@ function App() {
             transition={{ duration: 0.8 }}
           >
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6">
-              Uw Partner in{' '}
+              Transformeer Uw Bedrijf met
               <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
-                Artificiële Intelligentie
+                Meetbare AI Resultaten
               </span>
             </h1>
             <p className="text-xl md:text-2xl text-slate-300 mb-8 max-w-3xl mx-auto">
-              Transformeer uw bedrijf met geavanceerde AI-oplossingen. IndyctAI combineert menselijke creativiteit 
-              met de kracht van artificiële intelligentie voor ongekende groei.
+              IndyctAI levert op maat gemaakte AI-oplossingen die uw efficiëntie verhogen, kosten verlagen en groei versnellen. 
+              Bereik concrete resultaten met onze bewezen expertise.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <motion.div
@@ -296,7 +296,7 @@ function App() {
                         repeatDelay: 1
                       }}
                     >
-                      Ontdek Onze Diensten
+                      Gratis AI-Quickscan
                     </motion.span>
                     
                     {/* Animated arrow with trail effect */}
@@ -389,7 +389,7 @@ function App() {
                             repeatDelay: 1.5
                           }}
                         >
-                          Neem Contact Op
+                          Ontvang in 14 dagen een op maat gemaakte AI-oplossing
                         </motion.span>
                         
                         {/* Animated mail icon with pulse effect */}
@@ -684,8 +684,8 @@ function App() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
-              Van strategisch advies tot implementatie van complexe AI-systemen, 
-              IndyctAI is uw complete partner in artificiële intelligentie.
+              Geen standaard AI-tools, maar volledig op maat gemaakte oplossingen die perfect aansluiten bij uw bedrijf. 
+              IndyctAI levert strategische begeleiding en technische expertise voor duurzame AI-transformatie.
             </motion.p>
           </motion.div>
 
@@ -759,17 +759,23 @@ function App() {
               transition={{ duration: 0.8 }}
             >
               <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-                Over <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">IndyctAI</span>
+                Waarom <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">IndyctAI</span>
               </h2>
               <p className="text-lg text-slate-300 mb-6">
-                IndyctAI is opgericht met de visie om de kracht van artificiële intelligentie 
-                toegankelijk te maken voor bedrijven van elke omvang. Met diepgaande expertise in 
-                AI-strategieën en implementatie helpt IndyctAI bedrijven hun volledige potentieel te ontdekken.
+                Terwijl standaard AI-tools en no-code platformen generieke oplossingen bieden, specialiseert IndyctAI zich in 
+                volledig op maat gemaakte AI-systemen die naadloos integreren met uw bestaande infrastructuur en processen. 
+                Wij zijn geen leverancier van kant-en-klare tools, maar uw strategische partner in AI-transformatie.
+              </p>
+              <p className="text-lg text-slate-300 mb-6">
+                Onze aanpak gaat verder dan implementatie. We analyseren uw unieke bedrijfsuitdagingen, ontwerpen 
+                gepersonaliseerde AI-architecturen en begeleiden u door elke stap van de transformatie. Van strategische 
+                planning tot technische implementatie en continue optimalisatie - IndyctAI zorgt ervoor dat AI niet alleen 
+                werkt, maar ook evolueert met uw bedrijf.
               </p>
               <p className="text-lg text-slate-300 mb-8">
-                IndyctAI gelooft in de synergie tussen mens en machine. Onze AI-oplossingen zijn ontworpen 
-                om uw team te versterken, niet te vervangen, waardoor uw medewerkers zich kunnen richten 
-                op taken met hogere waarde. U krijgt directe toegang tot expertise zonder bureaucratie.
+                Met IndyctAI krijgt u directe toegang tot diepgaande AI-expertise zonder de overhead van grote consultancybureaus. 
+                Onze focus ligt op het leveren van meetbare resultaten die uw concurrentiepositie versterken en uw bedrijf 
+                toekomstbestendig maken in een snel veranderende digitale wereld.
               </p>
             </motion.div>
             
@@ -932,3 +938,179 @@ function App() {
 
 export default App;
 
+
+
+      {/* Case Study/Demo Section */}
+      <section id="cases" className="py-20 bg-slate-800/30">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+              Onze <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">Resultaten</span>
+            </h2>
+            <p className="text-xl text-slate-300 max-w-3xl mx-auto">
+              Ontdek hoe IndyctAI bedrijven zoals het uwe heeft geholpen om concrete resultaten te behalen met AI.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+            >
+              <Card className="bg-slate-800/50 border-slate-700">
+                <CardHeader>
+                  <CardTitle className="text-white text-2xl">Case Study: Efficiëntieboost bij E-commerce Gigant</CardTitle>
+                  <CardDescription className="text-slate-300">
+                    Implementatie van een AI-gestuurd voorraadbeheersysteem.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-6">
+                  <p className="text-slate-300">
+                    Een toonaangevende e-commerce speler kampte met inefficiënte voorraadprocessen, wat leidde tot overschotten en tekorten. IndyctAI ontwikkelde en implementeerde een geavanceerd AI-systeem dat vraagvoorspelling en voorraadoptimalisatie automatiseerde.
+                  </p>
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-2">
+                      <CheckCircle className="w-4 h-4 text-green-400" />
+                      <span className="text-slate-300">20% reductie in voorraadkosten</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <CheckCircle className="w-4 h-4 text-green-400" />
+                      <span className="text-slate-300">15% snellere orderverwerking</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <CheckCircle className="w-4 h-4 text-green-400" />
+                      <span className="text-slate-300">95% nauwkeurigheid in vraagvoorspelling</span>
+                    </div>
+                  </div>
+                  <blockquote className="text-slate-400 italic border-l-4 border-blue-500 pl-4">
+                    "De AI-oplossing van IndyctAI heeft onze supply chain volledig getransformeerd. We zien nu al een aanzienlijke verbetering in onze operationele efficiëntie en een directe impact op onze winstgevendheid."
+                    <footer className="mt-2 text-white">— Sarah Jansen, COO van E-commerce Gigant</footer>
+                  </blockquote>
+                </CardContent>
+              </Card>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              className="relative"
+            >
+              <img
+                src={futuristicAi1}
+                alt="Case Study AI"
+                className="rounded-lg shadow-2xl w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-purple-600/20 rounded-lg" />
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* About Section */}
+
+      {/* CTA Section */}
+      <section className="py-20 bg-gradient-to-r from-blue-600/20 to-purple-600/20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+              Klaar voor <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">Transformatie?</span>
+            </h2>
+            <p className="text-xl text-slate-300 mb-8 max-w-3xl mx-auto">
+              Start vandaag nog met uw AI-reis. Ontvang binnen 14 dagen een volledig op maat gemaakte AI-oplossing 
+              die direct impact heeft op uw bedrijfsresultaten.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Dialog>
+                <DialogTrigger asChild>
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <Button 
+                      size="lg" 
+                      className="bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white px-8 py-3"
+                    >
+                      Plan Gratis AI-Quickscan
+                    </Button>
+                  </motion.div>
+                </DialogTrigger>
+                <DialogContent className="sm:max-w-[425px] bg-slate-800 border-slate-700 text-white">
+                  <DialogHeader>
+                    <DialogTitle>Plan Uw Gratis AI-Quickscan</DialogTitle>
+                    <DialogDescription>
+                      Ontdek binnen 30 minuten de AI-mogelijkheden voor uw bedrijf.
+                    </DialogDescription>
+                  </DialogHeader>
+                  <form 
+                    onSubmit={(e) => {
+                      e.preventDefault();
+                      const formData = new FormData(e.target);
+                      const name = formData.get('name');
+                      const email = formData.get('email');
+                      const company = formData.get('company');
+                      
+                      const subject = `AI-Quickscan aanvraag van ${company}`;
+                      const body = `Naam: ${name}\nE-mail: ${email}\nBedrijf: ${company}\n\nIk wil graag een gratis AI-quickscan plannen om de mogelijkheden voor mijn bedrijf te bespreken.`;
+                      
+                      const mailtoLink = `mailto:indyctai@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                      window.location.href = mailtoLink;
+                      
+                      alert('Uw e-mailclient wordt geopend om de AI-quickscan aan te vragen.');
+                    }}
+                  >
+                    <div className="grid gap-4 py-4">
+                      <div className="grid grid-cols-4 items-center gap-4">
+                        <label htmlFor="name" className="text-right text-sm">Naam</label>
+                        <Input id="name" name="name" required className="col-span-3 bg-slate-700 border-slate-600" />
+                      </div>
+                      <div className="grid grid-cols-4 items-center gap-4">
+                        <label htmlFor="email" className="text-right text-sm">Email</label>
+                        <Input id="email" name="email" type="email" required className="col-span-3 bg-slate-700 border-slate-600" />
+                      </div>
+                      <div className="grid grid-cols-4 items-center gap-4">
+                        <label htmlFor="company" className="text-right text-sm">Bedrijf</label>
+                        <Input id="company" name="company" required className="col-span-3 bg-slate-700 border-slate-600" />
+                      </div>
+                    </div>
+                    <DialogFooter>
+                      <Button type="submit" className="bg-blue-600 hover:bg-blue-700">Plan Quickscan</Button>
+                    </DialogFooter>
+                  </form>
+                </DialogContent>
+              </Dialog>
+              
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Button 
+                  size="lg" 
+                  variant="outline"
+                  className="border-white text-white hover:bg-white hover:text-slate-900 px-8 py-3"
+                  onClick={() => {
+                    const contactSection = document.getElementById('contact');
+                    if (contactSection) {
+                      contactSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }}
+                >
+                  Meer Informatie
+                </Button>
+              </motion.div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Case Study/Demo Section */}
