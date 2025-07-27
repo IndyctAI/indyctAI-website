@@ -234,7 +234,7 @@ function App() {
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6">
               Verhoog Uw Winst met
               <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
-                Direct Meetbare AI
+                Meetbare AI
               </span>
             </h1>
             <p className="text-xl md:text-2xl text-slate-300 mb-8 max-w-3xl mx-auto">
@@ -250,7 +250,7 @@ function App() {
                 <Button 
                   size="lg" 
                   onClick={scrollToServices}
-                  className="services-button relative bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white px-8 py-3 overflow-hidden border-2 border-transparent hover:border-cyan-400/50 transition-all duration-500"
+                  className="services-button relative bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white px-6 py-3 overflow-hidden border-2 border-transparent hover:border-cyan-400/50 transition-all duration-500"
                 >
                   {/* Animated background layers */}
                   <div className="absolute inset-0 bg-gradient-to-r from-cyan-400/20 to-blue-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -296,7 +296,7 @@ function App() {
                         repeatDelay: 1
                       }}
                     >
-                      Plan jouw gratis AI Quickscan nu – binnen 24 uur contact
+                      Plan gratis AI Quickscan
                     </motion.span>
                     
                     {/* Animated arrow with trail effect */}
@@ -343,7 +343,7 @@ function App() {
                   >
                     <Button 
                       size="lg" 
-                      className="contact-button relative bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-8 py-3 overflow-hidden border-2 border-transparent hover:border-pink-400/50 transition-all duration-500"
+                      className="contact-button relative bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-6 py-3 overflow-hidden border-2 border-transparent hover:border-pink-400/50 transition-all duration-500"
                     >
                       {/* Animated background layers */}
                       <div className="absolute inset-0 bg-gradient-to-r from-pink-400/20 to-purple-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -389,7 +389,7 @@ function App() {
                             repeatDelay: 1.5
                           }}
                         >
-                          Start vandaag – ontvang binnen 14 dagen uw AI-oplossing
+                          Start vandaag
                         </motion.span>
                         
                         {/* Animated mail icon with pulse effect */}
@@ -1042,7 +1042,7 @@ export default App;
                       size="lg" 
                       className="bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white px-8 py-3"
                     >
-                      Plan jouw gratis AI Quickscan nu – binnen 24 uur contact
+                      Plan gratis AI Quickscan
                     </Button>
                   </motion.div>
                 </DialogTrigger>
